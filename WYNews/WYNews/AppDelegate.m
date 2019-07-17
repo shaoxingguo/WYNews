@@ -65,6 +65,7 @@
     UINavigationBar *navBar = [UINavigationBar appearance];
     [navBar setBackgroundImage:[UIImage imageNamed:@"NavBar64"] forBarMetrics:UIBarMetricsDefault];
     navBar.tintColor = [UIColor whiteColor];
+    navBar.translucent = YES;
     navBar.titleTextAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:24],
                                    NSForegroundColorAttributeName: [UIColor whiteColor]
                                    };

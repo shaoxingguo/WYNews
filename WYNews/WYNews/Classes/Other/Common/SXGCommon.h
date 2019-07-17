@@ -6,7 +6,7 @@
 //  Copyright © 2019 itcast. All rights reserved.
 //
 
-@interface XGCommon : NSObject
+@interface SXGCommon : NSObject
 
 + (instancetype)shared;
 

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@implementation XGCommon
+@implementation SXGCommon
 {
     CGFloat _screenWidth;
     CGFloat _screenHeight;
