@@ -1,0 +1,37 @@
+//
+//  PrefixHeader.pch
+//  界面搭建
+//
+//  Created by shaoxingguo on 2019/7/16.
+//  Copyright © 2019 shaoxingguo. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#ifdef __OBJC__
+
+#ifdef DEBUG
+#define DEBUG_Log(format, ...)  NSLog((@"文件名:%@ 函数名:%s 行号:%d  " format), [NSString stringWithUTF8String:__FILE__].lastPathComponent, __FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define DEBUG_Log_Method        DEBUG_Log(@"")
+#else
+#define DEBUG_Log(format, ...)
+#define DEBUG_Log_Method
+#endif  /* DEBUG */
+
+
+// 第三方库
+
+// 分类
+#import "UIView+Frame.h"
+#import "UIButton+Extension.h"
+#import "UILabel+Extension.h"
+
+// 配置文件
+#import "XGCommon.h"
+
+// 自己封装的工具类
+
+#endif  /* __OBJC__ */
+
+#endif /* PrefixHeader_pch */

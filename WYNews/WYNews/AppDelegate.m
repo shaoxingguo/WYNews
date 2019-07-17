@@ -6,7 +6,11 @@
 //  Copyright © 2019 shaoxingguo. All rights reserved.
 //
 
+#import <SVProgressHUD/SVProgressHUD.h>
+
 #import "AppDelegate.h"
+
+#import "SXGHomeViewController.h"
 
 @interface AppDelegate ()
 
@@ -15,8 +19,15 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    _window.backgroundColor = [UIColor whiteColor];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[SXGHomeViewController alloc] init]];
+    _window.rootViewController = nav;
+    [_window makeKeyAndVisible];
+    
+    [self initializeSetting];
     return YES;
 }
 
@@ -47,5 +58,20 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+#pragma mark - 其他私有方法
+
+- (void)initializeSetting
+{
+    UINavigationBar *navBar = [UINavigationBar appearance];
+    [navBar setBackgroundImage:[UIImage imageNamed:@"NavBar64"] forBarMetrics:UIBarMetricsDefault];
+    navBar.tintColor = [UIColor whiteColor];
+    navBar.titleTextAttributes = @{NSFontAttributeName: [UIFont systemFontOfSize:24],
+                                   NSForegroundColorAttributeName: [UIColor whiteColor]
+                                   };
+    
+    [SVProgressHUD setMaximumDismissTimeInterval:2];
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
+    [SVProgressHUD setForegroundColor:[UIColor redColor]];
+}
 
 @end
