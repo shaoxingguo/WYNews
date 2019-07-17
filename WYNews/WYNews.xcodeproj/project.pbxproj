@@ -13,9 +13,12 @@
 		5B1978A622DEC14C00F7694D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B1978A522DEC14C00F7694D /* Assets.xcassets */; };
 		5B1978A922DEC14C00F7694D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B1978A722DEC14C00F7694D /* LaunchScreen.storyboard */; };
 		5B1978AC22DEC14C00F7694D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1978AB22DEC14C00F7694D /* main.m */; };
+		DFBA6ACFEF9DC992062B5AC3 /* libPods-WYNews.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CC856105C51D2E537544CF8 /* libPods-WYNews.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1CC856105C51D2E537544CF8 /* libPods-WYNews.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WYNews.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CD3F6CCE97712AC3691C6F0 /* Pods-WYNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYNews.debug.xcconfig"; path = "Target Support Files/Pods-WYNews/Pods-WYNews.debug.xcconfig"; sourceTree = "<group>"; };
 		5B19789922DEC14B00F7694D /* WYNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B19789C22DEC14B00F7694D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5B19789D22DEC14B00F7694D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -26,6 +29,7 @@
 		5B1978A822DEC14C00F7694D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B1978AA22DEC14C00F7694D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B1978AB22DEC14C00F7694D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8BE5908A79938B5334D97CCD /* Pods-WYNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYNews.release.xcconfig"; path = "Target Support Files/Pods-WYNews/Pods-WYNews.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFBA6ACFEF9DC992062B5AC3 /* libPods-WYNews.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +49,8 @@
 			children = (
 				5B19789B22DEC14B00F7694D /* WYNews */,
 				5B19789A22DEC14B00F7694D /* Products */,
+				D9C7A5A772DF91861C890C11 /* Pods */,
+				7BA5A669638BF59FB29D5644 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +78,24 @@
 			path = WYNews;
 			sourceTree = "<group>";
 		};
+		7BA5A669638BF59FB29D5644 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1CC856105C51D2E537544CF8 /* libPods-WYNews.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D9C7A5A772DF91861C890C11 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4CD3F6CCE97712AC3691C6F0 /* Pods-WYNews.debug.xcconfig */,
+				8BE5908A79938B5334D97CCD /* Pods-WYNews.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -78,9 +103,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5B1978AF22DEC14C00F7694D /* Build configuration list for PBXNativeTarget "WYNews" */;
 			buildPhases = (
+				A34FA76000D384B136AC2080 /* [CP] Check Pods Manifest.lock */,
 				5B19789522DEC14B00F7694D /* Sources */,
 				5B19789622DEC14B00F7694D /* Frameworks */,
 				5B19789722DEC14B00F7694D /* Resources */,
+				4086E5501A2C184E02ABEA09 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -135,6 +162,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4086E5501A2C184E02ABEA09 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WYNews/Pods-WYNews-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WYNews/Pods-WYNews-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WYNews/Pods-WYNews-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A34FA76000D384B136AC2080 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WYNews-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5B19789522DEC14B00F7694D /* Sources */ = {
@@ -283,6 +352,7 @@
 		};
 		5B1978B022DEC14C00F7694D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CD3F6CCE97712AC3691C6F0 /* Pods-WYNews.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -299,6 +369,7 @@
 		};
 		5B1978B122DEC14C00F7694D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BE5908A79938B5334D97CCD /* Pods-WYNews.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
