@@ -73,7 +73,7 @@ static NSString *kSXGHeadLineCollectionViewCellReuseIdentifier = @"SXGHeadLineCo
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.collectionView.backgroundColor = [UIColor whiteColor];
-    
+    self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([SXGHeadLineCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:kSXGHeadLineCollectionViewCellReuseIdentifier];;
     
     [self loadHeadLineData];

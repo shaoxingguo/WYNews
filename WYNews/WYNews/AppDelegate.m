@@ -11,7 +11,7 @@
 
 #import "AppDelegate.h"
 
-#import "SXGNewsListTableViewController.h"
+#import "SXGHomeViewController.h"
 
 @interface AppDelegate ()
 
@@ -24,7 +24,7 @@
 {
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _window.backgroundColor = [UIColor whiteColor];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[SXGNewsListTableViewController alloc] init]];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:[[SXGHomeViewController alloc] init]];
     _window.rootViewController = nav;
     [_window makeKeyAndVisible];
     

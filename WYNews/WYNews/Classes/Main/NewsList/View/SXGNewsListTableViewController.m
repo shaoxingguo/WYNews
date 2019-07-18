@@ -10,6 +10,7 @@
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 
 #import "SXGNewsListTableViewController.h"
+#import "SXGHeadLineCollectionViewController.h"
 
 #import "SXGNoNetworkTableViewCell.h"
 #import "SXGNormalNewsTableViewCell.h"
@@ -23,6 +24,8 @@ static NSString *kSXGNormalNewsTableViewCellReuseIdentifier = @"SXGNormalNewsTab
 {
     /// 新闻列表视图模型
     SXGNewsListViewModel *_newsListViewModel;
+    /// 头条视图控制器
+    SXGHeadLineCollectionViewController *_headLineViewController;
 }
 
 @end
@@ -110,6 +113,18 @@ static NSString *kSXGNormalNewsTableViewCellReuseIdentifier = @"SXGNormalNewsTab
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([SXGNormalNewsTableViewCell class]) bundle:nil] forCellReuseIdentifier:kSXGNormalNewsTableViewCellReuseIdentifier];
     
     self.tableView.estimatedRowHeight = 100;
+    
+    [self prepareHeadLineView];
+}
+
+- (void)prepareHeadLineView
+{
+    _headLineViewController = [[SXGHeadLineCollectionViewController alloc] init];
+    [self addChildViewController:_headLineViewController];
+    [_headLineViewController didMoveToParentViewController:self];
+    
+    self.tableView.tableHeaderView = _headLineViewController.view;
+    _headLineViewController.view.height = 180;
 }
 
 - (void)loadNewsListData

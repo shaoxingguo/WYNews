@@ -33,6 +33,7 @@
 		5B5EF49A22E0709A00C30690 /* SXGNoNetworkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5EF49922E0709A00C30690 /* SXGNoNetworkTableViewCell.m */; };
 		5B5EF49D22E07D8D00C30690 /* SXGNewsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5EF49C22E07D8D00C30690 /* SXGNewsViewModel.m */; };
 		5B5EF4A022E07F3700C30690 /* SXGNewsListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5EF49F22E07F3700C30690 /* SXGNewsListViewModel.m */; };
+		5B5EF4A622E08CED00C30690 /* SXGNewsListCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5EF4A522E08CED00C30690 /* SXGNewsListCollectionViewCell.m */; };
 		5BF0531E22DFF1D200957E98 /* SXGNewsDAL.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0531D22DFF1D200957E98 /* SXGNewsDAL.m */; };
 		5BF0532122DFF9C000957E98 /* SXGHeadLineCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0532022DFF9C000957E98 /* SXGHeadLineCollectionViewController.m */; };
 		5BF0532522DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0532322DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.m */; };
@@ -91,6 +92,8 @@
 		5B5EF49C22E07D8D00C30690 /* SXGNewsViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXGNewsViewModel.m; sourceTree = "<group>"; };
 		5B5EF49E22E07F3700C30690 /* SXGNewsListViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGNewsListViewModel.h; sourceTree = "<group>"; };
 		5B5EF49F22E07F3700C30690 /* SXGNewsListViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXGNewsListViewModel.m; sourceTree = "<group>"; };
+		5B5EF4A422E08CED00C30690 /* SXGNewsListCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGNewsListCollectionViewCell.h; sourceTree = "<group>"; };
+		5B5EF4A522E08CED00C30690 /* SXGNewsListCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXGNewsListCollectionViewCell.m; sourceTree = "<group>"; };
 		5BF0531C22DFF1D200957E98 /* SXGNewsDAL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGNewsDAL.h; sourceTree = "<group>"; };
 		5BF0531D22DFF1D200957E98 /* SXGNewsDAL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXGNewsDAL.m; sourceTree = "<group>"; };
 		5BF0531F22DFF9C000957E98 /* SXGHeadLineCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGHeadLineCollectionViewController.h; sourceTree = "<group>"; };
@@ -352,6 +355,8 @@
 			children = (
 				5B1978F022DEC57500F7694D /* SXGHomeViewController.h */,
 				5B1978F122DEC57500F7694D /* SXGHomeViewController.m */,
+				5B5EF4A422E08CED00C30690 /* SXGNewsListCollectionViewCell.h */,
+				5B5EF4A522E08CED00C30690 /* SXGNewsListCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -569,6 +574,7 @@
 				5B1978E122DEC43D00F7694D /* GZLabel.m in Sources */,
 				5B1978E422DEC43D00F7694D /* UIButton+Extension.m in Sources */,
 				5B1978E022DEC43D00F7694D /* UILabel+Extension.m in Sources */,
+				5B5EF4A622E08CED00C30690 /* SXGNewsListCollectionViewCell.m in Sources */,
 				5B1978E522DEC43D00F7694D /* UIImage+EXtension.m in Sources */,
 				5B1978EB22DEC45F00F7694D /* SXGNetworkTools.m in Sources */,
 				5B1978EF22DEC49700F7694D /* SXGCommon.m in Sources */,

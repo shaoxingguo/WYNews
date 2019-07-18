@@ -11,11 +11,13 @@
 #import "SXGHomeViewController.h"
 #import "SXGHeadLineCollectionViewController.h"
 
+#import "SXGNewsListCollectionViewCell.h"
+
 #import "SXGNewsTopicModel.h"
 
-#import <Masonry.h>
+static NSString *const kSXGNewsListCollectionViewCellReuseIdentifier = @"SXGNewsListCollectionViewCell";
 
-@interface SXGHomeViewController ()
+@interface SXGHomeViewController () <UICollectionViewDataSource,UICollectionViewDelegate>
 {
     /// 新闻话题模型数组
     NSArray<SXGNewsTopicModel *> *_newsTopicArr;
@@ -24,6 +26,8 @@
     UIScrollView *_newsTopicScrollView;
     /// 选中的标题按钮
     UIButton *_selectedNewsTopiccButton;
+    /// 新闻列表滚动视图
+    UICollectionView *_newsListCollectionView;
 }
 
 @end
@@ -59,6 +63,19 @@
     [_newsTopicScrollView setContentOffset:CGPointMake(offset, 0) animated:YES];
 }
 
+#pragma mark - 数据源和代理方法
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return _newsTopicArr.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    SXGNewsListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSXGNewsListCollectionViewCellReuseIdentifier forIndexPath:indexPath];
+    return cell;
+}
+
 #pragma mark - 内部其他私有方法
 
 - (void)setUpUI
@@ -66,13 +83,13 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self prepareNewsTopicScrollView];
-    [self prepareHeadLineView];
+    [self prepareNewsListCollectionView];
 }
 
 - (void)prepareNewsTopicScrollView
 {
     _newsTopicScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, [SXGCommon shared].navigationBarHeight, [SXGCommon shared].screenWidth, 44)];
-    _newsTopicScrollView.backgroundColor = [UIColor orangeColor];
+    _newsTopicScrollView.backgroundColor = [UIColor whiteColor];
     _newsTopicScrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     _newsTopicScrollView.showsHorizontalScrollIndicator = NO;
     _newsTopicScrollView.bounces = NO;
@@ -94,13 +111,25 @@
     _newsTopicScrollView.contentSize = CGSizeMake(width * _newsTopicArr.count, 0);
 }
 
-- (void)prepareHeadLineView
+- (void)prepareNewsListCollectionView
 {
-    SXGHeadLineCollectionViewController *viewController = [[SXGHeadLineCollectionViewController alloc] init];
-    [self addChildViewController:viewController];
-    [viewController didMoveToParentViewController:self];
-    [self.view addSubview:viewController.view];
-    viewController.view.frame = CGRectMake(0, CGRectGetMaxY(_newsTopicScrollView.frame), [SXGCommon shared].screenWidth, 180);
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    CGFloat y = CGRectGetMaxY(_newsTopicScrollView.frame);
+    _newsListCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, y, [SXGCommon shared].screenWidth, self.view.height - y - [SXGCommon shared].bottomMargin) collectionViewLayout:flowLayout];
+    _newsListCollectionView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_newsListCollectionView];
+    
+    flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    flowLayout.itemSize = _newsListCollectionView.size;
+    flowLayout.minimumLineSpacing = 0;
+    
+    _newsListCollectionView.pagingEnabled = YES;
+    _newsListCollectionView.bounces = NO;
+    _newsListCollectionView.showsHorizontalScrollIndicator = NO;
+    _newsListCollectionView.dataSource = self;
+    _newsListCollectionView.delegate = self;
+    
+    [_newsListCollectionView registerClass:[SXGNewsListCollectionViewCell class] forCellWithReuseIdentifier:kSXGNewsListCollectionViewCellReuseIdentifier];
 }
 
 #pragma mark - 懒加载
