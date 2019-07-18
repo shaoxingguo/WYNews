@@ -8,7 +8,7 @@
   
 #import <AFNetworking/AFNetworking.h>
 
-@interface XGNetworkTools : AFHTTPSessionManager
+@interface SXGNetworkTools : AFHTTPSessionManager
 
 typedef void (^HttpCompletionHandleBlock)(id _Nullable responseObject,NSError * _Nullable error);
 typedef void (^HttpDownloadProgressHandleBlock)(CGFloat progress);

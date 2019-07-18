@@ -11,5 +11,6 @@ pod 'Masonry'
 pod 'MJExtension'
 pod 'SVProgressHUD'
 pod 'AFNetworking'
+pod 'YYWebImage'
 
 end

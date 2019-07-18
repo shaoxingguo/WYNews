@@ -6,23 +6,21 @@
 //  Copyright © 2017年 itcast. All rights reserved.
 //
 
-#import "XGNetworkTools.h"
+#import "SXGNetworkTools.h"
 
-static NSString *const API_BaseURL = @"https://c.m.163.com/nc/";
-
-@implementation XGNetworkTools
+@implementation SXGNetworkTools
 
 #pragma mark - 单例
 
 + (instancetype)sharedTools
 {
-    static XGNetworkTools *instance;
+    static SXGNetworkTools *instance;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
         config.timeoutIntervalForRequest = 15;
         config.requestCachePolicy = NSURLRequestUseProtocolCachePolicy;
-        instance = [[self alloc] initWithBaseURL:[NSURL URLWithString:API_BaseURL] sessionConfiguration:config];
+        instance = [[self alloc] initWithBaseURL:[NSURL URLWithString:[[SXGCommon shared] baseURLString]] sessionConfiguration:config];
         instance.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",nil];
     });
     
@@ -33,7 +31,7 @@ static NSString *const API_BaseURL = @"https://c.m.163.com/nc/";
 
 + (void)GetRequest:(NSString *)urlString parameters:(NSDictionary *)parameters completionHandle:(HttpCompletionHandleBlock)completionHandle
 {
-    [[XGNetworkTools sharedTools] GET:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[SXGNetworkTools sharedTools] GET:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         completionHandle(responseObject,nil);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         completionHandle(nil,error);
@@ -42,7 +40,7 @@ static NSString *const API_BaseURL = @"https://c.m.163.com/nc/";
 
 + (void)PostRequest:(NSString *)urlString parameters:(NSDictionary *)parameters completionHandle:(HttpCompletionHandleBlock)completionHandle
 {
-    [[XGNetworkTools sharedTools] POST:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    [[SXGNetworkTools sharedTools] POST:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         completionHandle(responseObject,nil);
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         completionHandle(nil,error);
@@ -53,7 +51,7 @@ static NSString *const API_BaseURL = @"https://c.m.163.com/nc/";
 
 + (void)UploadFile:(NSString *)urlString parameters:parameters fileData:(NSData *)fileData fieldName:(NSString *)fieldName completionHandle:(HttpCompletionHandleBlock)completionHandle
 {
-    [[XGNetworkTools sharedTools] POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+    [[SXGNetworkTools sharedTools] POST:urlString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         [formData appendPartWithFileData:fileData name:fieldName fileName:@"xxx.png" mimeType:@"application/octet-stream"];
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
          completionHandle(responseObject,nil);
@@ -67,7 +65,7 @@ static NSString *const API_BaseURL = @"https://c.m.163.com/nc/";
 + (void)downLoadFile:(NSString *)urlString progressHandle:(HttpDownloadProgressHandleBlock)progressHandle completionHandle:(HttpDownloadCompletionHandleBlock)completionHandle
 {
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlString]];
-    [[[XGNetworkTools sharedTools] downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+    [[[SXGNetworkTools sharedTools] downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
         progressHandle(downloadProgress.fractionCompleted);
     } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
         // targetPath是默认的文件存储路径 下载完会自动删除 所以要自己指定保存的路径 即这里的返回值

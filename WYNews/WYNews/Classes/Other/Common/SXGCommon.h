@@ -29,6 +29,11 @@
 /// 是否可用ios11
 - (BOOL)isIOS11;
 
+/// 服务器地址
+- (NSString *)baseURLString;
+/// 头条接口地址
+- (NSString *)headLineAPIString;
+
 @end
 
 

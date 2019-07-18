@@ -19,6 +19,9 @@
     CGFloat _bottomMargin;
     BOOL _isIphoneX;
     BOOL _isIOS11;
+    
+    NSString *_baseURLString;
+    NSString *_headLineAPIString;
 }
 
 #pragma mark - 单例方法
@@ -37,21 +40,30 @@
 - (instancetype)init
 {
     if (self = [super init]) {
-        // 应用程序相关常量
-        _screenWidth = [UIScreen mainScreen].bounds.size.width;
-        _screenHeight = [UIScreen mainScreen].bounds.size.height;
-        _screenScale = [UIScreen mainScreen].scale;
-        
-        _statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
-        _navigationBarHeight = 44 + _statusBarHeight;
-
-        _isIphoneX = _statusBarHeight > 20;
-        _bottomMargin = _isIphoneX ? 34 : 0;
-        _tabBarHeight = 49 + _bottomMargin;
-        _isIOS11 = [[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){.majorVersion = 11, .minorVersion = 0, .patchVersion = 0}];
+        [self initializeSetting];
     }
     
     return self;
+}
+
+- (void)initializeSetting
+{
+    // 应用程序相关常量
+    _screenWidth = [UIScreen mainScreen].bounds.size.width;
+    _screenHeight = [UIScreen mainScreen].bounds.size.height;
+    _screenScale = [UIScreen mainScreen].scale;
+    
+    _statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+    _navigationBarHeight = 44 + _statusBarHeight;
+    
+    _isIphoneX = _statusBarHeight > 20;
+    _bottomMargin = _isIphoneX ? 34 : 0;
+    _tabBarHeight = 49 + _bottomMargin;
+    _isIOS11 = [[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){.majorVersion = 11, .minorVersion = 0, .patchVersion = 0}];
+    
+    // 网络相关常量
+    _baseURLString = @"https://c.m.163.com/nc/";
+    _headLineAPIString = @"article/headline/T1348647853363/0-10.html";
 }
 
 #pragma mark - 开放方法
@@ -99,6 +111,18 @@
 - (BOOL)isIOS11
 {
     return _isIOS11;
+}
+
+/// 服务器地址
+- (NSString *)baseURLString
+{
+    return _baseURLString;
+}
+
+/// 头条接口地址
+- (NSString *)headLineAPIString
+{
+    return _headLineAPIString;
 }
 
 @end

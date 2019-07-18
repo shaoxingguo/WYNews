@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B041CA422DF1D4400990431 /* SXGHeadLineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B041CA322DF1D4400990431 /* SXGHeadLineModel.m */; };
 		5B19789E22DEC14B00F7694D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19789D22DEC14B00F7694D /* AppDelegate.m */; };
 		5B1978A622DEC14C00F7694D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B1978A522DEC14C00F7694D /* Assets.xcassets */; };
 		5B1978A922DEC14C00F7694D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B1978A722DEC14C00F7694D /* LaunchScreen.storyboard */; };
@@ -19,17 +20,23 @@
 		5B1978E422DEC43D00F7694D /* UIButton+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1978D822DEC43D00F7694D /* UIButton+Extension.m */; };
 		5B1978E522DEC43D00F7694D /* UIImage+EXtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1978DA22DEC43D00F7694D /* UIImage+EXtension.m */; };
 		5B1978E622DEC43D00F7694D /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1978DD22DEC43D00F7694D /* UIView+Frame.m */; };
-		5B1978EB22DEC45F00F7694D /* XGNetworkTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1978EA22DEC45F00F7694D /* XGNetworkTools.m */; };
+		5B1978EB22DEC45F00F7694D /* SXGNetworkTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1978EA22DEC45F00F7694D /* SXGNetworkTools.m */; };
 		5B1978EF22DEC49700F7694D /* SXGCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1978ED22DEC49700F7694D /* SXGCommon.m */; };
 		5B1978F222DEC57500F7694D /* SXGHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1978F122DEC57500F7694D /* SXGHomeViewController.m */; };
 		5B1978F522DEC84C00F7694D /* topic_news.json in Resources */ = {isa = PBXBuildFile; fileRef = 5B1978F322DEC84C00F7694D /* topic_news.json */; };
 		5B1978F622DEC84C00F7694D /* newsDetail.html in Resources */ = {isa = PBXBuildFile; fileRef = 5B1978F422DEC84C00F7694D /* newsDetail.html */; };
 		5B1978F922DEC86800F7694D /* SXGNewsTopicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1978F822DEC86800F7694D /* SXGNewsTopicModel.m */; };
+		5BF0531E22DFF1D200957E98 /* SXGNewsDAL.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0531D22DFF1D200957E98 /* SXGNewsDAL.m */; };
+		5BF0532122DFF9C000957E98 /* SXGHeadLineCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0532022DFF9C000957E98 /* SXGHeadLineCollectionViewController.m */; };
+		5BF0532522DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0532322DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.m */; };
+		5BF0532622DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BF0532422DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.xib */; };
 		FC0EC1F49A4E94C9FDE4178D /* Pods_WYNews.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 712E4BF57E5FA3DDC94BF95D /* Pods_WYNews.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4CD3F6CCE97712AC3691C6F0 /* Pods-WYNews.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYNews.debug.xcconfig"; path = "Target Support Files/Pods-WYNews/Pods-WYNews.debug.xcconfig"; sourceTree = "<group>"; };
+		5B041CA222DF1D4400990431 /* SXGHeadLineModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGHeadLineModel.h; sourceTree = "<group>"; };
+		5B041CA322DF1D4400990431 /* SXGHeadLineModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXGHeadLineModel.m; sourceTree = "<group>"; };
 		5B19789922DEC14B00F7694D /* WYNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WYNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B19789C22DEC14B00F7694D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5B19789D22DEC14B00F7694D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -53,8 +60,8 @@
 		5B1978DB22DEC43D00F7694D /* UIImage+EXtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+EXtension.h"; sourceTree = "<group>"; };
 		5B1978DD22DEC43D00F7694D /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
 		5B1978DE22DEC43D00F7694D /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
-		5B1978E922DEC45F00F7694D /* XGNetworkTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XGNetworkTools.h; sourceTree = "<group>"; };
-		5B1978EA22DEC45F00F7694D /* XGNetworkTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XGNetworkTools.m; sourceTree = "<group>"; };
+		5B1978E922DEC45F00F7694D /* SXGNetworkTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXGNetworkTools.h; sourceTree = "<group>"; };
+		5B1978EA22DEC45F00F7694D /* SXGNetworkTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXGNetworkTools.m; sourceTree = "<group>"; };
 		5B1978EC22DEC49700F7694D /* SXGCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SXGCommon.h; sourceTree = "<group>"; };
 		5B1978ED22DEC49700F7694D /* SXGCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SXGCommon.m; sourceTree = "<group>"; };
 		5B1978EE22DEC49700F7694D /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
@@ -64,6 +71,13 @@
 		5B1978F422DEC84C00F7694D /* newsDetail.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = newsDetail.html; sourceTree = "<group>"; };
 		5B1978F722DEC86800F7694D /* SXGNewsTopicModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGNewsTopicModel.h; sourceTree = "<group>"; };
 		5B1978F822DEC86800F7694D /* SXGNewsTopicModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXGNewsTopicModel.m; sourceTree = "<group>"; };
+		5BF0531C22DFF1D200957E98 /* SXGNewsDAL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGNewsDAL.h; sourceTree = "<group>"; };
+		5BF0531D22DFF1D200957E98 /* SXGNewsDAL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXGNewsDAL.m; sourceTree = "<group>"; };
+		5BF0531F22DFF9C000957E98 /* SXGHeadLineCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGHeadLineCollectionViewController.h; sourceTree = "<group>"; };
+		5BF0532022DFF9C000957E98 /* SXGHeadLineCollectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXGHeadLineCollectionViewController.m; sourceTree = "<group>"; };
+		5BF0532222DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGHeadLineCollectionViewCell.h; sourceTree = "<group>"; };
+		5BF0532322DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXGHeadLineCollectionViewCell.m; sourceTree = "<group>"; };
+		5BF0532422DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXGHeadLineCollectionViewCell.xib; sourceTree = "<group>"; };
 		712E4BF57E5FA3DDC94BF95D /* Pods_WYNews.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WYNews.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BE5908A79938B5334D97CCD /* Pods-WYNews.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WYNews.release.xcconfig"; path = "Target Support Files/Pods-WYNews/Pods-WYNews.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -297,6 +311,8 @@
 			children = (
 				5B1978F722DEC86800F7694D /* SXGNewsTopicModel.h */,
 				5B1978F822DEC86800F7694D /* SXGNewsTopicModel.m */,
+				5B041CA222DF1D4400990431 /* SXGHeadLineModel.h */,
+				5B041CA322DF1D4400990431 /* SXGHeadLineModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -306,6 +322,11 @@
 			children = (
 				5B1978F022DEC57500F7694D /* SXGHomeViewController.h */,
 				5B1978F122DEC57500F7694D /* SXGHomeViewController.m */,
+				5BF0531F22DFF9C000957E98 /* SXGHeadLineCollectionViewController.h */,
+				5BF0532022DFF9C000957E98 /* SXGHeadLineCollectionViewController.m */,
+				5BF0532222DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.h */,
+				5BF0532322DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.m */,
+				5BF0532422DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -365,6 +386,8 @@
 			isa = PBXGroup;
 			children = (
 				5B1978E822DEC45F00F7694D /* Network */,
+				5BF0531C22DFF1D200957E98 /* SXGNewsDAL.h */,
+				5BF0531D22DFF1D200957E98 /* SXGNewsDAL.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -372,8 +395,8 @@
 		5B1978E822DEC45F00F7694D /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				5B1978E922DEC45F00F7694D /* XGNetworkTools.h */,
-				5B1978EA22DEC45F00F7694D /* XGNetworkTools.m */,
+				5B1978E922DEC45F00F7694D /* SXGNetworkTools.h */,
+				5B1978EA22DEC45F00F7694D /* SXGNetworkTools.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -456,6 +479,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B1978F522DEC84C00F7694D /* topic_news.json in Resources */,
+				5BF0532622DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.xib in Resources */,
 				5B1978A922DEC14C00F7694D /* LaunchScreen.storyboard in Resources */,
 				5B1978F622DEC84C00F7694D /* newsDetail.html in Resources */,
 				5B1978A622DEC14C00F7694D /* Assets.xcassets in Resources */,
@@ -511,18 +535,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B041CA422DF1D4400990431 /* SXGHeadLineModel.m in Sources */,
 				5B1978F222DEC57500F7694D /* SXGHomeViewController.m in Sources */,
+				5BF0532122DFF9C000957E98 /* SXGHeadLineCollectionViewController.m in Sources */,
 				5B1978E122DEC43D00F7694D /* GZLabel.m in Sources */,
 				5B1978E422DEC43D00F7694D /* UIButton+Extension.m in Sources */,
 				5B1978E022DEC43D00F7694D /* UILabel+Extension.m in Sources */,
 				5B1978E522DEC43D00F7694D /* UIImage+EXtension.m in Sources */,
-				5B1978EB22DEC45F00F7694D /* XGNetworkTools.m in Sources */,
+				5B1978EB22DEC45F00F7694D /* SXGNetworkTools.m in Sources */,
 				5B1978EF22DEC49700F7694D /* SXGCommon.m in Sources */,
 				5B1978F922DEC86800F7694D /* SXGNewsTopicModel.m in Sources */,
 				5B1978E222DEC43D00F7694D /* UINavigationController+XG.m in Sources */,
+				5BF0532522DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.m in Sources */,
 				5B1978AC22DEC14C00F7694D /* main.m in Sources */,
 				5B1978E322DEC43D00F7694D /* XGCustomButton.m in Sources */,
 				5B1978DF22DEC43D00F7694D /* XGWeiBoLabel.m in Sources */,
+				5BF0531E22DFF1D200957E98 /* SXGNewsDAL.m in Sources */,
 				5B1978E622DEC43D00F7694D /* UIView+Frame.m in Sources */,
 				5B19789E22DEC14B00F7694D /* AppDelegate.m in Sources */,
 			);

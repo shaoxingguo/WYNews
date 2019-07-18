@@ -17,12 +17,20 @@ PODS:
   - Masonry (1.1.0)
   - MJExtension (3.0.17)
   - SVProgressHUD (2.2.5)
+  - YYCache (1.0.4)
+  - YYImage (1.0.4):
+    - YYImage/Core (= 1.0.4)
+  - YYImage/Core (1.0.4)
+  - YYWebImage (1.0.5):
+    - YYCache
+    - YYImage
 
 DEPENDENCIES:
   - AFNetworking
   - Masonry
   - MJExtension
   - SVProgressHUD
+  - YYWebImage
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -30,13 +38,19 @@ SPEC REPOS:
     - Masonry
     - MJExtension
     - SVProgressHUD
+    - YYCache
+    - YYImage
+    - YYWebImage
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 74ec83124a68891619fb7ba9c5c811bbf1691076
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
+  YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
+  YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 8211a01d90b7027c3d4dbf617915e0867954a89e
+PODFILE CHECKSUM: 66b4ca475dea09128e13a1e1efa8a42f6decfd98
 
 COCOAPODS: 1.7.4

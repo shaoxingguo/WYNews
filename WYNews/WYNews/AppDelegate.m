@@ -7,6 +7,7 @@
 //
 
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <AFNetworking/AFNetworkActivityIndicatorManager.h>
 
 #import "AppDelegate.h"
 
@@ -73,6 +74,8 @@
     [SVProgressHUD setMaximumDismissTimeInterval:2];
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
     [SVProgressHUD setForegroundColor:[UIColor redColor]];
+    
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
 }
 
 @end

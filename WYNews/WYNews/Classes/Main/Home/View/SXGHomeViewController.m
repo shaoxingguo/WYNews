@@ -9,8 +9,11 @@
 #import <MJExtension/MJExtension.h>
 
 #import "SXGHomeViewController.h"
+#import "SXGHeadLineCollectionViewController.h"
 
 #import "SXGNewsTopicModel.h"
+
+#import <Masonry.h>
 
 @interface SXGHomeViewController ()
 {
@@ -40,7 +43,7 @@
 {
     [super viewDidLoad];
     
-   self.navigationItem.title = @"网易新闻";
+    self.navigationItem.title = @"网易新闻";
 }
 
 #pragma mark - 事件监听
@@ -62,10 +65,11 @@
 {
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [self prepareTopicScrollView];
+    [self prepareNewsTopicScrollView];
+    [self prepareHeadLineView];
 }
 
-- (void)prepareTopicScrollView
+- (void)prepareNewsTopicScrollView
 {
     _newsTopicScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, [SXGCommon shared].navigationBarHeight, [SXGCommon shared].screenWidth, 44)];
     _newsTopicScrollView.backgroundColor = [UIColor orangeColor];
@@ -90,6 +94,14 @@
     _newsTopicScrollView.contentSize = CGSizeMake(width * _newsTopicArr.count, 0);
 }
 
+- (void)prepareHeadLineView
+{
+    SXGHeadLineCollectionViewController *viewController = [[SXGHeadLineCollectionViewController alloc] init];
+    [self addChildViewController:viewController];
+    [viewController didMoveToParentViewController:self];
+    [self.view addSubview:viewController.view];
+    viewController.view.frame = CGRectMake(0, CGRectGetMaxY(_newsTopicScrollView.frame), [SXGCommon shared].screenWidth, 180);
+}
 
 #pragma mark - 懒加载
 
