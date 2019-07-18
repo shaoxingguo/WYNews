@@ -111,7 +111,12 @@
         NSString *path = [[NSBundle mainBundle] pathForResource:@"topic_news.json" ofType:nil];
         NSData *data = [NSData dataWithContentsOfFile:path];
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        _newsTopicArr = [SXGNewsTopicModel mj_objectArrayWithKeyValuesArray:dict[@"tList"]];
+        NSMutableArray<SXGNewsTopicModel *> *arrM = [SXGNewsTopicModel mj_objectArrayWithKeyValuesArray:dict[@"tList"]];
+        [arrM sortUsingComparator:^NSComparisonResult(SXGNewsTopicModel *obj1, SXGNewsTopicModel *obj2) {
+            return [obj1.tid compare:obj2.tid];
+        }];
+        
+        _newsTopicArr = [arrM copy];
     }
     
     return _newsTopicArr;

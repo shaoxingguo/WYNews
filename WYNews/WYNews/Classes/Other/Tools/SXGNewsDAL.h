@@ -19,6 +19,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)loadHeadLineList:(void(^)(id __nullable responseObject))completion;
 
+
+/**
+ 加载新闻数据
+
+ @param tid 新闻类型
+ @param completion 完成回调
+ */
++ (void)loadNewsListWithTid:(NSString *)tid completion:(void(^)(id __nullable responseObject))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END
