@@ -26,9 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *imgsrc;
 /// 额外图片
 @property (nonatomic,strong) NSArray<NSString *> *imgextra;
-/// 是否是大图
-@property (nonatomic,assign,getter=isBigImage) BOOL bigImage;
-
+/// 图片类型
+@property (nonatomic,assign) NSInteger imgType;
 
 @end
 

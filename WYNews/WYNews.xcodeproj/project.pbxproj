@@ -31,6 +31,8 @@
 		5B5EF49622E06D9100C30690 /* SXGNormalNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5EF49422E06D9100C30690 /* SXGNormalNewsTableViewCell.m */; };
 		5B5EF49722E06D9100C30690 /* SXGNormalNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B5EF49522E06D9100C30690 /* SXGNormalNewsTableViewCell.xib */; };
 		5B5EF49A22E0709A00C30690 /* SXGNoNetworkTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5EF49922E0709A00C30690 /* SXGNoNetworkTableViewCell.m */; };
+		5B5EF49D22E07D8D00C30690 /* SXGNewsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5EF49C22E07D8D00C30690 /* SXGNewsViewModel.m */; };
+		5B5EF4A022E07F3700C30690 /* SXGNewsListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5EF49F22E07F3700C30690 /* SXGNewsListViewModel.m */; };
 		5BF0531E22DFF1D200957E98 /* SXGNewsDAL.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0531D22DFF1D200957E98 /* SXGNewsDAL.m */; };
 		5BF0532122DFF9C000957E98 /* SXGHeadLineCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0532022DFF9C000957E98 /* SXGHeadLineCollectionViewController.m */; };
 		5BF0532522DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0532322DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.m */; };
@@ -85,6 +87,10 @@
 		5B5EF49522E06D9100C30690 /* SXGNormalNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXGNormalNewsTableViewCell.xib; sourceTree = "<group>"; };
 		5B5EF49822E0709A00C30690 /* SXGNoNetworkTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGNoNetworkTableViewCell.h; sourceTree = "<group>"; };
 		5B5EF49922E0709A00C30690 /* SXGNoNetworkTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXGNoNetworkTableViewCell.m; sourceTree = "<group>"; };
+		5B5EF49B22E07D8D00C30690 /* SXGNewsViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGNewsViewModel.h; sourceTree = "<group>"; };
+		5B5EF49C22E07D8D00C30690 /* SXGNewsViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXGNewsViewModel.m; sourceTree = "<group>"; };
+		5B5EF49E22E07F3700C30690 /* SXGNewsListViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGNewsListViewModel.h; sourceTree = "<group>"; };
+		5B5EF49F22E07F3700C30690 /* SXGNewsListViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXGNewsListViewModel.m; sourceTree = "<group>"; };
 		5BF0531C22DFF1D200957E98 /* SXGNewsDAL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGNewsDAL.h; sourceTree = "<group>"; };
 		5BF0531D22DFF1D200957E98 /* SXGNewsDAL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXGNewsDAL.m; sourceTree = "<group>"; };
 		5BF0531F22DFF9C000957E98 /* SXGHeadLineCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGHeadLineCollectionViewController.h; sourceTree = "<group>"; };
@@ -284,6 +290,10 @@
 		5B1978C322DEC3E300F7694D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				5B5EF49E22E07F3700C30690 /* SXGNewsListViewModel.h */,
+				5B5EF49F22E07F3700C30690 /* SXGNewsListViewModel.m */,
+				5B5EF49B22E07D8D00C30690 /* SXGNewsViewModel.h */,
+				5B5EF49C22E07D8D00C30690 /* SXGNewsViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -551,6 +561,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B5EF4A022E07F3700C30690 /* SXGNewsListViewModel.m in Sources */,
 				5B041CA422DF1D4400990431 /* SXGHeadLineModel.m in Sources */,
 				5B5EF49222E064D300C30690 /* SXGNewsModel.m in Sources */,
 				5B1978F222DEC57500F7694D /* SXGHomeViewController.m in Sources */,
@@ -564,6 +575,7 @@
 				5B1978F922DEC86800F7694D /* SXGNewsTopicModel.m in Sources */,
 				5B1978E222DEC43D00F7694D /* UINavigationController+XG.m in Sources */,
 				5BF0532522DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.m in Sources */,
+				5B5EF49D22E07D8D00C30690 /* SXGNewsViewModel.m in Sources */,
 				5B1978AC22DEC14C00F7694D /* main.m in Sources */,
 				5B1978E322DEC43D00F7694D /* XGCustomButton.m in Sources */,
 				5B5EF49622E06D9100C30690 /* SXGNormalNewsTableViewCell.m in Sources */,

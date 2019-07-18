@@ -6,7 +6,6 @@
 //  Copyright © 2019 shaoxingguo. All rights reserved.
 //
 
-#import <MJExtension/MJExtension.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <AFNetworking/AFNetworkReachabilityManager.h>
 
@@ -15,22 +14,31 @@
 #import "SXGNoNetworkTableViewCell.h"
 #import "SXGNormalNewsTableViewCell.h"
 
-#import "SXGNewsDAL.h"
-
-#import "SXGNewsModel.h"
+#import "SXGNewsListViewModel.h"
 
 static NSString *kSXGNoNetworkTableViewCellReuseIdentifier = @"SXGNoNetworkTableViewCell";
 static NSString *kSXGNormalNewsTableViewCellReuseIdentifier = @"SXGNormalNewsTableViewCell";
 
 @interface SXGNewsListTableViewController ()
 {
-    /// 新闻数据模型数组
-    NSMutableArray<SXGNewsModel *> *_newsListArrM;
+    /// 新闻列表视图模型
+    SXGNewsListViewModel *_newsListViewModel;
 }
 
 @end
 
 @implementation SXGNewsListTableViewController
+
+#pragma mark - 构造方法
+
+- (instancetype)initWithStyle:(UITableViewStyle)style
+{
+    if (self = [super initWithStyle:style]) {
+        _newsListViewModel = [[SXGNewsListViewModel alloc] init];
+    }
+    
+    return self;
+}
 
 #pragma mark - 控制器生命周期方法
 
@@ -69,7 +77,7 @@ static NSString *kSXGNormalNewsTableViewCellReuseIdentifier = @"SXGNormalNewsTab
         return [AFNetworkReachabilityManager sharedManager].reachable ? 0 : 1;
     }
     
-    return [self newsListArrM].count;
+    return _newsListViewModel.newsList.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -79,7 +87,7 @@ static NSString *kSXGNormalNewsTableViewCellReuseIdentifier = @"SXGNormalNewsTab
     }
     
     SXGNormalNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kSXGNormalNewsTableViewCellReuseIdentifier];
-    cell.newsModel = _newsListArrM[indexPath.item];
+    cell.newsViewModel = _newsListViewModel.newsList[indexPath.row];
     return cell;
 }
 
@@ -106,26 +114,14 @@ static NSString *kSXGNormalNewsTableViewCellReuseIdentifier = @"SXGNormalNewsTab
 
 - (void)loadNewsListData
 {
-    [SXGNewsDAL loadNewsListWithTid:@"T1348647853363" completion:^(id  _Nullable responseObject) {
-        if (responseObject == nil || [responseObject count] == 0) {
+    [_newsListViewModel loadNewsListWithTid:@"T1348647853363" completion:^(BOOL isSuccess) {
+        if (!isSuccess) {
             [SVProgressHUD showErrorWithStatus:@"加载新闻数据失败,请检查网络连接"];
             return;
         }
         
-        [self->_newsListArrM addObjectsFromArray:[SXGNewsModel mj_objectArrayWithKeyValuesArray:responseObject]];
         [self.tableView reloadData];
     }];
-}
-
-#pragma mark - 懒加载
-
-- (NSMutableArray<SXGNewsModel *> *)newsListArrM
-{
-    if (!_newsListArrM) {
-        _newsListArrM = [NSMutableArray array];
-    }
-    
-    return _newsListArrM;
 }
 
 @end
