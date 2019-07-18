@@ -63,7 +63,6 @@
     
     // 网络相关常量
     _baseURLString = @"https://c.m.163.com/nc/";
-    _headLineAPIString = @"article/headline/T1348647853363/0-10.html";
 }
 
 #pragma mark - 开放方法
@@ -117,12 +116,6 @@
 - (NSString *)baseURLString
 {
     return _baseURLString;
-}
-
-/// 头条接口地址
-- (NSString *)headLineAPIString
-{
-    return _headLineAPIString;
 }
 
 @end

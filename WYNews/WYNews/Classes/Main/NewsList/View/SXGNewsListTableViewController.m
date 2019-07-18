@@ -16,6 +16,7 @@
 #import "SXGNormalNewsTableViewCell.h"
 
 #import "SXGNewsListViewModel.h"
+#import "SXGNewsTopicModel.h"
 
 static NSString *kSXGNoNetworkTableViewCellReuseIdentifier = @"SXGNoNetworkTableViewCell";
 static NSString *kSXGNormalNewsTableViewCellReuseIdentifier = @"SXGNormalNewsTableViewCell";
@@ -26,6 +27,8 @@ static NSString *kSXGNormalNewsTableViewCellReuseIdentifier = @"SXGNormalNewsTab
     SXGNewsListViewModel *_newsListViewModel;
     /// 头条视图控制器
     SXGHeadLineCollectionViewController *_headLineViewController;
+    /// 新闻话题数据模型
+    SXGNewsTopicModel *_newsTopicModel;
 }
 
 @end
@@ -50,7 +53,6 @@ static NSString *kSXGNormalNewsTableViewCellReuseIdentifier = @"SXGNormalNewsTab
     [super viewDidLoad];
     
     [self setUpTableView];
-    [self loadNewsListData];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkingReachabilityDidChangeNotification) name:AFNetworkingReachabilityDidChangeNotification object:nil];
 }
@@ -129,7 +131,8 @@ static NSString *kSXGNormalNewsTableViewCellReuseIdentifier = @"SXGNormalNewsTab
 
 - (void)loadNewsListData
 {
-    [_newsListViewModel loadNewsListWithTid:@"T1348647853363" completion:^(BOOL isSuccess) {
+    NSString *tid = _newsTopicModel != nil ? _newsTopicModel.tid : @"T1348647853363";
+    [_newsListViewModel loadNewsListWithTid:tid completion:^(BOOL isSuccess) {
         if (!isSuccess) {
             [SVProgressHUD showErrorWithStatus:@"加载新闻数据失败,请检查网络连接"];
             return;
@@ -137,6 +140,15 @@ static NSString *kSXGNormalNewsTableViewCellReuseIdentifier = @"SXGNormalNewsTab
         
         [self.tableView reloadData];
     }];
+}
+
+- (void)setNewsTopicModel:(SXGNewsTopicModel *)newsTopicModel
+{
+    if (_newsTopicModel != newsTopicModel) {
+        _newsTopicModel = newsTopicModel;
+        _headLineViewController.newsTopicModel = newsTopicModel;
+        [self loadNewsListData];
+    }
 }
 
 @end

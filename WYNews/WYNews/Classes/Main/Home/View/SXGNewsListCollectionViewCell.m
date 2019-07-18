@@ -37,4 +37,9 @@
     _newsListTableViewController.tableView.tableHeaderView.height = 180;
 }
 
+- (void)setNewsTopicModel:(SXGNewsTopicModel *)newsTopicModel
+{
+    _newsListTableViewController.newsTopicModel = newsTopicModel;
+}
+
 @end

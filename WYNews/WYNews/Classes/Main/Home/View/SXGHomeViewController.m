@@ -48,6 +48,12 @@ static NSString *const kSXGNewsListCollectionViewCellReuseIdentifier = @"SXGNews
     [super viewDidLoad];
     
     self.navigationItem.title = @"网易新闻";
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSIndexPath *indexPath = [self->_newsListCollectionView indexPathsForVisibleItems].lastObject;
+        SXGNewsListCollectionViewCell *cell = (SXGNewsListCollectionViewCell *)[self->_newsListCollectionView cellForItemAtIndexPath:indexPath];
+        cell.newsTopicModel = self->_newsTopicArr[indexPath.item];
+    });
 }
 
 #pragma mark - 事件监听
@@ -74,6 +80,13 @@ static NSString *const kSXGNewsListCollectionViewCellReuseIdentifier = @"SXGNews
 {
     SXGNewsListCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kSXGNewsListCollectionViewCellReuseIdentifier forIndexPath:indexPath];
     return cell;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSInteger index = scrollView.contentOffset.x / scrollView.width;
+    SXGNewsListCollectionViewCell *cell = [_newsListCollectionView visibleCells].lastObject;
+    cell.newsTopicModel = _newsTopicArr[index];
 }
 
 #pragma mark - 内部其他私有方法

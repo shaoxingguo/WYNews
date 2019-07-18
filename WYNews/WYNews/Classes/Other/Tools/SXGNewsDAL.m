@@ -12,9 +12,11 @@
 
 @implementation SXGNewsDAL
 
-+ (void)loadHeadLineList:(void(^)(id __nullable responseObject))completion
++ (void)loadHeadLineListWithTid:(NSString *)tid completion:(void(^)(id __nullable responseObject))completion
 {
-    [SXGNetworkTools GetRequest:[[SXGCommon shared] headLineAPIString] parameters:nil completionHandle:^(id  _Nullable responseObject, NSError * _Nullable error) {
+    NSString *apiString = @"https://c.m.163.com/nc/article/headline/tid/0-10.html";
+    apiString = [apiString stringByReplacingOccurrencesOfString:@"/tid/" withString:[NSString stringWithFormat:@"/%@/",tid]];
+    [SXGNetworkTools GetRequest:apiString parameters:nil completionHandle:^(id  _Nullable responseObject, NSError * _Nullable error) {
         if (error != nil || responseObject == nil) {
             DEBUG_Log(@"加载头条数据失败%@",error.localizedDescription);
             completion(nil);

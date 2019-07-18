@@ -15,6 +15,7 @@
 #import "SXGNewsDAL.h"
 
 #import "SXGHeadLineModel.h"
+#import "SXGNewsTopicModel.h"
 
 #pragma mark - SXGHeadLineCollectionViewFlowLayout
 
@@ -45,6 +46,8 @@ static NSString *kSXGHeadLineCollectionViewCellReuseIdentifier = @"SXGHeadLineCo
 
 @implementation SXGHeadLineCollectionViewController
 {
+    /// 新闻话题数据模型
+    SXGNewsTopicModel *_newsTopicModel;
     /// 头条数据模型数组
     NSArray<SXGHeadLineModel *> *_headLineModelaArr;
     /// 当前头条索引
@@ -75,8 +78,6 @@ static NSString *kSXGHeadLineCollectionViewCellReuseIdentifier = @"SXGHeadLineCo
     self.collectionView.backgroundColor = [UIColor whiteColor];
     self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([SXGHeadLineCollectionViewCell class]) bundle:nil] forCellWithReuseIdentifier:kSXGHeadLineCollectionViewCellReuseIdentifier];;
-    
-    [self loadHeadLineData];
 }
 
 - (void)dealloc
@@ -130,7 +131,8 @@ static NSString *kSXGHeadLineCollectionViewCellReuseIdentifier = @"SXGHeadLineCo
 
 - (void)loadHeadLineData
 {
-    [SXGNewsDAL loadHeadLineList:^(id  _Nullable responseObject) {
+    NSString *tid = _newsTopicModel != nil ? _newsTopicModel.tid : @"T1348647853363";
+    [SXGNewsDAL loadNewsListWithTid:tid completion:^(id  _Nullable responseObject) {
         if (responseObject == nil || [responseObject count] == 0) {
             return;
         }
@@ -170,6 +172,14 @@ static NSString *kSXGHeadLineCollectionViewCellReuseIdentifier = @"SXGHeadLineCo
     }
     
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:_currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+}
+
+- (void)setNewsTopicModel:(SXGNewsTopicModel *)newsTopicModel
+{
+    if (_newsTopicModel != newsTopicModel) {
+        _newsTopicModel = newsTopicModel;
+        [self loadHeadLineData];
+    }
 }
 
 @end

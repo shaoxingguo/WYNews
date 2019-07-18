@@ -31,8 +31,6 @@
 
 /// 服务器地址
 - (NSString *)baseURLString;
-/// 头条接口地址
-- (NSString *)headLineAPIString;
 
 @end
 

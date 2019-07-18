@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@class SXGNewsViewModel;
+@class SXGNewsTopicModel;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface SXGNewsListCollectionViewCell : UICollectionViewCell
 
-/// 新闻数据模型
-@property (nonatomic,strong) SXGNewsViewModel *newsViewModel;
+/// 新闻话题数据模型
+@property (nonatomic,strong) SXGNewsTopicModel *newsTopicModel;
 
 @end
 
