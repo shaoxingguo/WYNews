@@ -38,6 +38,7 @@
 		5B9AE14E22E171AE0021FB52 /* SXGExtraImageNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9AE14C22E171AE0021FB52 /* SXGExtraImageNewsTableViewCell.xib */; };
 		5B9AE15222E1767F0021FB52 /* SXGBigImageNewsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AE15022E1767F0021FB52 /* SXGBigImageNewsTableViewCell.m */; };
 		5B9AE15322E1767F0021FB52 /* SXGBigImageNewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B9AE15122E1767F0021FB52 /* SXGBigImageNewsTableViewCell.xib */; };
+		5B9AE15A22E1A8A00021FB52 /* SXGNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9AE15922E1A8A00021FB52 /* SXGNewsDetailViewController.m */; };
 		5BF0531E22DFF1D200957E98 /* SXGNewsDAL.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0531D22DFF1D200957E98 /* SXGNewsDAL.m */; };
 		5BF0532122DFF9C000957E98 /* SXGHeadLineCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0532022DFF9C000957E98 /* SXGHeadLineCollectionViewController.m */; };
 		5BF0532522DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BF0532322DFFE8C00957E98 /* SXGHeadLineCollectionViewCell.m */; };
@@ -104,6 +105,8 @@
 		5B9AE14F22E1767F0021FB52 /* SXGBigImageNewsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGBigImageNewsTableViewCell.h; sourceTree = "<group>"; };
 		5B9AE15022E1767F0021FB52 /* SXGBigImageNewsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXGBigImageNewsTableViewCell.m; sourceTree = "<group>"; };
 		5B9AE15122E1767F0021FB52 /* SXGBigImageNewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SXGBigImageNewsTableViewCell.xib; sourceTree = "<group>"; };
+		5B9AE15822E1A8A00021FB52 /* SXGNewsDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGNewsDetailViewController.h; sourceTree = "<group>"; };
+		5B9AE15922E1A8A00021FB52 /* SXGNewsDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXGNewsDetailViewController.m; sourceTree = "<group>"; };
 		5BF0531C22DFF1D200957E98 /* SXGNewsDAL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGNewsDAL.h; sourceTree = "<group>"; };
 		5BF0531D22DFF1D200957E98 /* SXGNewsDAL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SXGNewsDAL.m; sourceTree = "<group>"; };
 		5BF0531F22DFF9C000957E98 /* SXGHeadLineCollectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SXGHeadLineCollectionViewController.h; sourceTree = "<group>"; };
@@ -323,17 +326,12 @@
 		5B1978C522DEC3E300F7694D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5B9AE15722E1A8870021FB52 /* Detail */,
+				5B9AE15622E1A8610021FB52 /* Normal */,
+				5B9AE15522E1A85F0021FB52 /* ExtraImage */,
+				5B9AE15422E1A85D0021FB52 /* BigImage */,
 				5B5EF48D22E0616100C30690 /* SXGNewsListTableViewController.h */,
 				5B5EF48E22E0616100C30690 /* SXGNewsListTableViewController.m */,
-				5B5EF49322E06D9100C30690 /* SXGNormalNewsTableViewCell.h */,
-				5B5EF49422E06D9100C30690 /* SXGNormalNewsTableViewCell.m */,
-				5B5EF49522E06D9100C30690 /* SXGNormalNewsTableViewCell.xib */,
-				5B9AE14A22E171AE0021FB52 /* SXGExtraImageNewsTableViewCell.h */,
-				5B9AE14B22E171AE0021FB52 /* SXGExtraImageNewsTableViewCell.m */,
-				5B9AE14C22E171AE0021FB52 /* SXGExtraImageNewsTableViewCell.xib */,
-				5B9AE14F22E1767F0021FB52 /* SXGBigImageNewsTableViewCell.h */,
-				5B9AE15022E1767F0021FB52 /* SXGBigImageNewsTableViewCell.m */,
-				5B9AE15122E1767F0021FB52 /* SXGBigImageNewsTableViewCell.xib */,
 				5B5EF49822E0709A00C30690 /* SXGNoNetworkTableViewCell.h */,
 				5B5EF49922E0709A00C30690 /* SXGNoNetworkTableViewCell.m */,
 			);
@@ -445,6 +443,45 @@
 				5B1978EA22DEC45F00F7694D /* SXGNetworkTools.m */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		5B9AE15422E1A85D0021FB52 /* BigImage */ = {
+			isa = PBXGroup;
+			children = (
+				5B9AE14F22E1767F0021FB52 /* SXGBigImageNewsTableViewCell.h */,
+				5B9AE15022E1767F0021FB52 /* SXGBigImageNewsTableViewCell.m */,
+				5B9AE15122E1767F0021FB52 /* SXGBigImageNewsTableViewCell.xib */,
+			);
+			path = BigImage;
+			sourceTree = "<group>";
+		};
+		5B9AE15522E1A85F0021FB52 /* ExtraImage */ = {
+			isa = PBXGroup;
+			children = (
+				5B9AE14A22E171AE0021FB52 /* SXGExtraImageNewsTableViewCell.h */,
+				5B9AE14B22E171AE0021FB52 /* SXGExtraImageNewsTableViewCell.m */,
+				5B9AE14C22E171AE0021FB52 /* SXGExtraImageNewsTableViewCell.xib */,
+			);
+			path = ExtraImage;
+			sourceTree = "<group>";
+		};
+		5B9AE15622E1A8610021FB52 /* Normal */ = {
+			isa = PBXGroup;
+			children = (
+				5B5EF49322E06D9100C30690 /* SXGNormalNewsTableViewCell.h */,
+				5B5EF49422E06D9100C30690 /* SXGNormalNewsTableViewCell.m */,
+				5B5EF49522E06D9100C30690 /* SXGNormalNewsTableViewCell.xib */,
+			);
+			path = Normal;
+			sourceTree = "<group>";
+		};
+		5B9AE15722E1A8870021FB52 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				5B9AE15822E1A8A00021FB52 /* SXGNewsDetailViewController.h */,
+				5B9AE15922E1A8A00021FB52 /* SXGNewsDetailViewController.m */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		7BA5A669638BF59FB29D5644 /* Frameworks */ = {
@@ -605,6 +642,7 @@
 				5B1978E322DEC43D00F7694D /* XGCustomButton.m in Sources */,
 				5B5EF49622E06D9100C30690 /* SXGNormalNewsTableViewCell.m in Sources */,
 				5B1978DF22DEC43D00F7694D /* XGWeiBoLabel.m in Sources */,
+				5B9AE15A22E1A8A00021FB52 /* SXGNewsDetailViewController.m in Sources */,
 				5B9AE14D22E171AE0021FB52 /* SXGExtraImageNewsTableViewCell.m in Sources */,
 				5BF0531E22DFF1D200957E98 /* SXGNewsDAL.m in Sources */,
 				5B5EF48F22E0616100C30690 /* SXGNewsListTableViewController.m in Sources */,

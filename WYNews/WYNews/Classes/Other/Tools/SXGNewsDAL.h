@@ -29,6 +29,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)loadNewsListWithTid:(NSString *)tid completion:(void(^)(id __nullable responseObject))completion;
 
+/**
+ 加载新闻详情
+
+ @param docid 新闻文章id
+ @param completion 完成回调
+ */
++ (void)loadNewsDetailWithDocid:(NSString *)docid completion:(void(^)(id __nullable responseObject))completion;
+
 @end
 
 NS_ASSUME_NONNULL_END

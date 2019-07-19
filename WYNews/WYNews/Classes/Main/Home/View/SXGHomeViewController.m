@@ -7,6 +7,7 @@
 //
 
 #import <MJExtension/MJExtension.h>
+#import <YYWebImage/YYWebImage.h>
 
 #import "SXGHomeViewController.h"
 #import "SXGHeadLineCollectionViewController.h"
@@ -64,6 +65,13 @@ static const CGFloat kSelectedNewsTopicButtonScale = 1.5f;
         // 选中第一个话题
         [self scrollViewDidScroll:self->_newsListCollectionView];
     });
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    
+    [[YYWebImageManager sharedManager].cache.memoryCache removeAllObjects];
 }
 
 #pragma mark - 事件监听

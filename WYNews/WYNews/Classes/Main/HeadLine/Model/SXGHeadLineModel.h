@@ -16,8 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *title;
 /// 图片资源
 @property (nonatomic,copy) NSString *imgsrc;
-/// 新闻文章id
-@property (nonatomic,copy) NSString *docid;
 
 @end
 

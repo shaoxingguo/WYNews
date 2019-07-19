@@ -144,7 +144,7 @@ static NSString *kSXGHeadLineCollectionViewCellReuseIdentifier = @"SXGHeadLineCo
 - (void)loadHeadLineData
 {
     NSString *tid = _newsTopicModel != nil ? _newsTopicModel.tid : @"T1348647853363";
-    [SXGNewsDAL loadNewsListWithTid:tid completion:^(id  _Nullable responseObject) {
+    [SXGNewsDAL loadHeadLineListWithTid:tid completion:^(id  _Nullable responseObject) {
         if (responseObject == nil || [responseObject count] == 0) {
             return;
         }

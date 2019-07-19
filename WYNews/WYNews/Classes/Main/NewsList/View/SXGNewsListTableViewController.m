@@ -11,6 +11,7 @@
 
 #import "SXGNewsListTableViewController.h"
 #import "SXGHeadLineCollectionViewController.h"
+#import "SXGNewsDetailViewController.h"
 
 #import "SXGNoNetworkTableViewCell.h"
 #import "SXGNormalNewsTableViewCell.h"
@@ -136,6 +137,15 @@ static NSString *kSXGBigImageNewsTableViewCellReuseIdentifier = @"SXGBigImageNew
     } else {
         return 100;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    SXGNewsDetailViewController *viewController = [[SXGNewsDetailViewController alloc] initWithNewsViewModel:_newsListViewModel.newsList[indexPath.row]];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
+    viewController.navigationItem.title = @"新闻详情";
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma mark - 其他私有方法
