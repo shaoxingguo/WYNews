@@ -163,7 +163,7 @@ static NSString *kSXGHeadLineCollectionViewCellReuseIdentifier = @"SXGHeadLineCo
 - (void)startTimer
 {
     __weak typeof(self) weakSelf = self;
-    _timer = [NSTimer timerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+    _timer = [NSTimer timerWithTimeInterval:2 repeats:YES block:^(NSTimer * _Nonnull timer) {
         [weakSelf nextPage];
     }];
     
