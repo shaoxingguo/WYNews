@@ -85,7 +85,7 @@ static NSString *const kSXGNewsListCollectionViewCellReuseIdentifier = @"SXGNews
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     NSInteger index = scrollView.contentOffset.x / scrollView.width;
-    SXGNewsListCollectionViewCell *cell = [_newsListCollectionView visibleCells].lastObject;
+    SXGNewsListCollectionViewCell *cell = (SXGNewsListCollectionViewCell *)[_newsListCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0]];
     cell.newsTopicModel = _newsTopicArr[index];
 }
 

@@ -40,6 +40,7 @@
 - (void)setNewsTopicModel:(SXGNewsTopicModel *)newsTopicModel
 {
     _newsListTableViewController.newsTopicModel = newsTopicModel;
+    [_newsListTableViewController reset];
 }
 
 @end

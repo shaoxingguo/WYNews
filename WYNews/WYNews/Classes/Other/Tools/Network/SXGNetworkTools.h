@@ -54,4 +54,7 @@ typedef void (^HttpDownloadCompletionHandleBlock)(NSString * _Nullable filePath,
  */
 + (void)downLoadFile:(NSString * _Nonnull)urlString progressHandle:(HttpDownloadProgressHandleBlock _Nonnull)progressHandle completionHandle:(HttpDownloadCompletionHandleBlock _Nonnull)completionHandle;
 
+/// 取消所有正在进行的网络请求
++ (void)cancelAllOperations;
+
 @end

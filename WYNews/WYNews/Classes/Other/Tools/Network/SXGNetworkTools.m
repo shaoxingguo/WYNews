@@ -75,4 +75,10 @@
         completionHandle(filePath.path,error);
     }] resume];
 }
+
++ (void)cancelAllOperations
+{
+    [[SXGNetworkTools sharedTools].operationQueue cancelAllOperations];
+}
+
 @end

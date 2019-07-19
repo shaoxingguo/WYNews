@@ -14,6 +14,7 @@
 
 + (void)loadHeadLineListWithTid:(NSString *)tid completion:(void(^)(id __nullable responseObject))completion
 {
+    
     NSString *apiString = @"https://c.m.163.com/nc/article/headline/tid/0-10.html";
     apiString = [apiString stringByReplacingOccurrencesOfString:@"/tid/" withString:[NSString stringWithFormat:@"/%@/",tid]];
     [SXGNetworkTools GetRequest:apiString parameters:nil completionHandle:^(id  _Nullable responseObject, NSError * _Nullable error) {

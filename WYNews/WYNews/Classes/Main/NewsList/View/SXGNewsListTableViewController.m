@@ -18,6 +18,8 @@
 #import "SXGNewsListViewModel.h"
 #import "SXGNewsTopicModel.h"
 
+#import "SXGNetworkTools.h"
+
 static NSString *kSXGNoNetworkTableViewCellReuseIdentifier = @"SXGNoNetworkTableViewCell";
 static NSString *kSXGNormalNewsTableViewCellReuseIdentifier = @"SXGNormalNewsTableViewCell";
 
@@ -44,6 +46,16 @@ static NSString *kSXGNormalNewsTableViewCellReuseIdentifier = @"SXGNormalNewsTab
     }
     
     return self;
+}
+
+#pragma mark - 开放方法
+
+- (void)reset
+{
+    if ([self.tableView visibleCells].count > 1) {
+        [_headLineViewController reset];
+        [self.tableView setContentOffset:CGPointMake(0, 0)];
+    }
 }
 
 #pragma mark - 控制器生命周期方法
@@ -145,6 +157,7 @@ static NSString *kSXGNormalNewsTableViewCellReuseIdentifier = @"SXGNormalNewsTab
 - (void)setNewsTopicModel:(SXGNewsTopicModel *)newsTopicModel
 {
     if (_newsTopicModel != newsTopicModel) {
+        [SXGNetworkTools cancelAllOperations];
         _newsTopicModel = newsTopicModel;
         _headLineViewController.newsTopicModel = newsTopicModel;
         [self loadNewsListData];

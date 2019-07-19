@@ -68,6 +68,18 @@ static NSString *kSXGHeadLineCollectionViewCellReuseIdentifier = @"SXGHeadLineCo
     return self;
 }
 
+#pragma mark - 开放方法
+
+- (void)reset
+{
+    if (_timer != nil) {
+        [self stopTimer];
+        self->_currentIndex = self->_headLineModelaArr.count;
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self->_currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+        [self startTimer];
+    }
+}
+
 #pragma mark - 控制器生命周期方法
 
 - (void)viewDidLoad
@@ -151,9 +163,11 @@ static NSString *kSXGHeadLineCollectionViewCellReuseIdentifier = @"SXGHeadLineCo
 - (void)startTimer
 {
     __weak typeof(self) weakSelf = self;
-    _timer = [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+    _timer = [NSTimer timerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
         [weakSelf nextPage];
     }];
+    
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)stopTimer
