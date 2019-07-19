@@ -29,6 +29,10 @@
     [super awakeFromNib];
     
     self.separatorInset = UIEdgeInsetsZero;
+    
+    self.layer.drawsAsynchronously = YES;
+    self.layer.shouldRasterize = YES;
+    self.layer.rasterizationScale = [UIScreen mainScreen].scale;
 }
 
 - (void)setNewsViewModel:(SXGNewsViewModel *)newsViewModel
@@ -36,8 +40,8 @@
     _newsViewModel = newsViewModel;
     
     [_imgsrcImageView yy_setImageWithURL:[NSURL URLWithString:newsViewModel.imgsrc] placeholder:nil options:0 progress:nil transform:^UIImage * _Nullable(UIImage * _Nonnull image, NSURL * _Nonnull url) {
-        return [image yy_imageByResizeToSize:CGSizeMake(80, 60)];
-    } completion:nil];
+        return [image yy_imageByResizeToSize:CGSizeMake(80,60) contentMode: UIViewContentModeScaleAspectFill];
+    } completion: nil];
     _titleLabel.text = newsViewModel.title;
     _digestLabel.text = newsViewModel.digest;
     _postTimeLabel.text = newsViewModel.postime;

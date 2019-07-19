@@ -76,7 +76,13 @@
 
 - (NSArray<NSString *> *)imgextra
 {
-    return _newsModel.imgextra;
+    if (_newsModel.imgextra != nil) {
+        NSString *extra1 = _newsModel.imgextra.firstObject[@"imgsrc"];
+        NSString *extra2 = _newsModel.imgextra.lastObject[@"imgsrc"];
+        return @[extra1,extra2];
+    }
+    
+    return nil;
 }
 
 - (BOOL)isBigImage

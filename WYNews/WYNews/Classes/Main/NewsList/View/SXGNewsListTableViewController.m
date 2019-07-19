@@ -14,14 +14,21 @@
 
 #import "SXGNoNetworkTableViewCell.h"
 #import "SXGNormalNewsTableViewCell.h"
+#import "SXGExtraImageNewsTableViewCell.h"
+#import "SXGBigImageNewsTableViewCell.h"
 
 #import "SXGNewsListViewModel.h"
 #import "SXGNewsTopicModel.h"
+
+#import "SXGNewsViewModel.h"
 
 #import "SXGNetworkTools.h"
 
 static NSString *kSXGNoNetworkTableViewCellReuseIdentifier = @"SXGNoNetworkTableViewCell";
 static NSString *kSXGNormalNewsTableViewCellReuseIdentifier = @"SXGNormalNewsTableViewCell";
+static NSString *kSXGExtraImageNewsTableViewCellReuseIdentifier = @"SXGExtraImageNewsTableViewCell";
+static NSString *kSXGBigImageNewsTableViewCellReuseIdentifier = @"SXGBigImageNewsTableViewCell";
+
 
 @interface SXGNewsListTableViewController ()
 {
@@ -103,8 +110,18 @@ static NSString *kSXGNormalNewsTableViewCellReuseIdentifier = @"SXGNormalNewsTab
         return [tableView dequeueReusableCellWithIdentifier:kSXGNoNetworkTableViewCellReuseIdentifier];
     }
     
-    SXGNormalNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kSXGNormalNewsTableViewCellReuseIdentifier];
-    cell.newsViewModel = _newsListViewModel.newsList[indexPath.row];
+    NSString *reuseIdentifier = nil;
+    SXGNewsViewModel *newsViewModel = _newsListViewModel.newsList[indexPath.row];
+    if (newsViewModel.imgextra != nil) {
+        reuseIdentifier = kSXGExtraImageNewsTableViewCellReuseIdentifier;
+    } else if (newsViewModel.isBigImage) {
+        reuseIdentifier = kSXGBigImageNewsTableViewCellReuseIdentifier;
+    } else {
+        reuseIdentifier = kSXGNormalNewsTableViewCellReuseIdentifier;
+    }
+    
+    SXGNormalNewsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    cell.newsViewModel = newsViewModel;
     return cell;
 }
 
@@ -112,9 +129,13 @@ static NSString *kSXGNormalNewsTableViewCellReuseIdentifier = @"SXGNormalNewsTab
 {
     if (indexPath.section == 0) {
         return 44;
+    } else if (_newsListViewModel.newsList[indexPath.row].imgextra != nil) {
+        return 140;
+    } else if (_newsListViewModel.newsList[indexPath.row].isBigImage) {
+        return 150;
+    } else {
+        return 100;
     }
-    
-    return 100;
 }
 
 #pragma mark - 其他私有方法
@@ -125,8 +146,10 @@ static NSString *kSXGNormalNewsTableViewCellReuseIdentifier = @"SXGNormalNewsTab
     
     [self.tableView registerClass:[SXGNoNetworkTableViewCell class] forCellReuseIdentifier:kSXGNoNetworkTableViewCellReuseIdentifier];
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([SXGNormalNewsTableViewCell class]) bundle:nil] forCellReuseIdentifier:kSXGNormalNewsTableViewCellReuseIdentifier];
-    
-    self.tableView.estimatedRowHeight = 100;
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([SXGExtraImageNewsTableViewCell class]) bundle:nil] forCellReuseIdentifier:kSXGExtraImageNewsTableViewCellReuseIdentifier];
+    [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([SXGBigImageNewsTableViewCell class]) bundle:nil] forCellReuseIdentifier:kSXGBigImageNewsTableViewCellReuseIdentifier];
+
+    self.tableView.estimatedRowHeight = 150;
     
     [self prepareHeadLineView];
 }

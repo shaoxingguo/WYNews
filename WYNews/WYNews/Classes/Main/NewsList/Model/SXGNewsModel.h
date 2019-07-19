@@ -25,7 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 图片资源
 @property (nonatomic,copy) NSString *imgsrc;
 /// 额外图片
-@property (nonatomic,strong) NSArray<NSString *> *imgextra;
+@property (nonatomic,strong) NSArray<NSDictionary *> *imgextra;
 /// 图片类型
 @property (nonatomic,assign) NSInteger imgType;
 

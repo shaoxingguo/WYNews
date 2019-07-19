@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 图片资源
 - (NSString *)imgsrc;
 /// 额外图片
-- (NSArray<NSString *> *)imgextra;
+- (NSArray<NSString *> *__nullable)imgextra;
 /// 是否是大图
 - (BOOL)isBigImage;
 
