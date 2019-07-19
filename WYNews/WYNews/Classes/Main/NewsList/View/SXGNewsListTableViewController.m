@@ -8,6 +8,7 @@
 
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <AFNetworking/AFNetworkReachabilityManager.h>
+#import <MJRefresh/MJRefresh.h>
 
 #import "SXGNewsListTableViewController.h"
 #import "SXGHeadLineCollectionViewController.h"
@@ -74,19 +75,25 @@ static NSString *kSXGBigImageNewsTableViewCellReuseIdentifier = @"SXGBigImageNew
     
     [self setUpTableView];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkingReachabilityDidChangeNotification) name:AFNetworkingReachabilityDidChangeNotification object:nil];
+    __weak typeof(self) weakSelf = self;
+    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
+        [weakSelf.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    }];
+    
+    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
 }
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[AFNetworkReachabilityManager sharedManager] stopMonitoring];
 }
 
 #pragma mark - 事件监听
 
-- (void)networkingReachabilityDidChangeNotification
+- (void)refreshNewsListData
 {
-    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    [self loadNewsListData];
+    [_headLineViewController refresh];
 }
 
 #pragma mark - 数据源和代理方法
@@ -145,7 +152,7 @@ static NSString *kSXGBigImageNewsTableViewCellReuseIdentifier = @"SXGBigImageNew
     SXGNewsDetailViewController *viewController = [[SXGNewsDetailViewController alloc] initWithNewsViewModel:_newsListViewModel.newsList[indexPath.row]];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
     viewController.navigationItem.title = @"新闻详情";
-    [self presentViewController:nav animated:YES completion:nil];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma mark - 其他私有方法
@@ -160,8 +167,11 @@ static NSString *kSXGBigImageNewsTableViewCellReuseIdentifier = @"SXGBigImageNew
     [self.tableView registerNib:[UINib nibWithNibName:NSStringFromClass([SXGBigImageNewsTableViewCell class]) bundle:nil] forCellReuseIdentifier:kSXGBigImageNewsTableViewCellReuseIdentifier];
 
     self.tableView.estimatedRowHeight = 150;
+    self.tableView.tableFooterView = [[UIView alloc] init];
     
     [self prepareHeadLineView];
+    
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshNewsListData)];
 }
 
 - (void)prepareHeadLineView
@@ -176,8 +186,13 @@ static NSString *kSXGBigImageNewsTableViewCellReuseIdentifier = @"SXGBigImageNew
 
 - (void)loadNewsListData
 {
+    // 请求新闻列表数据
     NSString *tid = _newsTopicModel != nil ? _newsTopicModel.tid : @"T1348647853363";
     [_newsListViewModel loadNewsListWithTid:tid completion:^(BOOL isSuccess) {
+        if (self.tableView.mj_header.isRefreshing) {
+            [self.tableView.mj_header endRefreshing];
+        }
+        
         if (!isSuccess) {
             [SVProgressHUD showErrorWithStatus:@"加载新闻数据失败,请检查网络连接"];
             return;
@@ -191,8 +206,8 @@ static NSString *kSXGBigImageNewsTableViewCellReuseIdentifier = @"SXGBigImageNew
 {
     if (_newsTopicModel != newsTopicModel) {
         [SXGNetworkTools cancelAllOperations];
-        _newsTopicModel = newsTopicModel;
         _headLineViewController.newsTopicModel = newsTopicModel;
+        _newsTopicModel = newsTopicModel;
         [self loadNewsListData];
     }
 }

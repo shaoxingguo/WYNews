@@ -9,6 +9,7 @@ target 'WYNews' do
 
 pod 'Masonry'
 pod 'MJExtension'
+pod 'MJRefresh'
 pod 'SVProgressHUD'
 pod 'AFNetworking'
 pod 'YYWebImage'

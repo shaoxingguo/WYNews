@@ -80,6 +80,12 @@ static NSString *kSXGHeadLineCollectionViewCellReuseIdentifier = @"SXGHeadLineCo
     }
 }
 
+- (void)refresh
+{
+    [self stopTimer];
+    [self loadHeadLineData];
+}
+
 #pragma mark - 控制器生命周期方法
 
 - (void)viewDidLoad

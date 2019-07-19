@@ -41,9 +41,10 @@
             completion(NO);
             return;
         }
-        
+    
         NSArray<SXGNewsModel *> *newsModelArr = [SXGNewsModel mj_objectArrayWithKeyValuesArray:responseObject];
         NSArray<SXGNewsViewModel *>*newsViewModelArr = [SXGNewsViewModel viewModelArrayWithNewsModelArray:newsModelArr];
+        [self->_newsViewModelArrM removeAllObjects];
         [self->_newsViewModelArrM addObjectsFromArray:newsViewModelArr];
         completion(YES);
     }];
