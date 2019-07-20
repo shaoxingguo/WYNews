@@ -21,7 +21,6 @@ static NSString *const kSXGNewsListCollectionViewCellReuseIdentifier = @"SXGNews
 #define SXG_News_Topic_Normal_Color  [UIColor blackColor]
 #define SXG_News_Topic_Selected_Color [UIColor redColor]
 
-/// 选中的话题按钮尺寸
 static const CGFloat kSelectedNewsTopicButtonScale = 1.5f;
 
 @interface SXGHomeViewController () <UICollectionViewDataSource,UICollectionViewDelegate>
@@ -31,10 +30,12 @@ static const CGFloat kSelectedNewsTopicButtonScale = 1.5f;
     
     /// 话题滚动视图
     UIScrollView *_newsTopicScrollView;
-    /// 选中的话题按钮
-    UIButton *_selectedNewsTopicButton;
     /// 新闻列表滚动视图
     UICollectionView *_newsListCollectionView;
+    /// 上一个话题索引
+    NSInteger _previousNewsTopicIndex;
+    /// 当前话题索引
+    NSInteger _currentNewsTopicIndex;
 }
 
 @end
@@ -61,9 +62,6 @@ static const CGFloat kSelectedNewsTopicButtonScale = 1.5f;
         NSIndexPath *indexPath = [self->_newsListCollectionView indexPathsForVisibleItems].lastObject;
         SXGNewsListCollectionViewCell *cell = (SXGNewsListCollectionViewCell *)[self->_newsListCollectionView cellForItemAtIndexPath:indexPath];
         cell.newsTopicModel = self->_newsTopicArr[indexPath.item];
-        
-        // 选中第一个话题
-        [self scrollViewDidScroll:self->_newsListCollectionView];
     });
 }
 
@@ -78,10 +76,17 @@ static const CGFloat kSelectedNewsTopicButtonScale = 1.5f;
 
 - (void)newsTopicButtonAction:(UIButton *)button
 {
+    // 重复点击同一个话题
+    if (_currentNewsTopicIndex == button.tag) {
+        return;
+    }
+    
     // 切换话题
-    _selectedNewsTopicButton.selected = NO;
+    _previousNewsTopicIndex = _currentNewsTopicIndex;
+    UIButton *previousNewsTopicButton = _newsTopicScrollView.subviews[_previousNewsTopicIndex];
+    previousNewsTopicButton.selected = NO;
     button.selected = YES;
-    _selectedNewsTopicButton = button;
+    _currentNewsTopicIndex = button.tag;
     
     CGFloat offset = (button.centerX - [SXGCommon shared].screenWidth / 2);
     CGFloat minOffset = 0;
@@ -92,8 +97,10 @@ static const CGFloat kSelectedNewsTopicButtonScale = 1.5f;
         offset = maxOffset;
     }
     
+    // 话题滚动视图滚动到对于的话题
     [_newsTopicScrollView setContentOffset:CGPointMake(offset, 0) animated:YES];
-    [_newsListCollectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:button.tag inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+    // 新闻滚动视图滚动到对于的话题模块
+    [_newsListCollectionView setContentOffset:CGPointMake(_currentNewsTopicIndex * _newsListCollectionView.width, 0) animated:YES];
 }
 
 #pragma mark - 数据源和代理方法
@@ -112,43 +119,65 @@ static const CGFloat kSelectedNewsTopicButtonScale = 1.5f;
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     NSInteger index = scrollView.contentOffset.x / scrollView.width;
+    // 没有滑动到别的模块 还处于当前模块
+    if (index == _currentNewsTopicIndex) {
+        return;
+    }
+    
+    // 切换到别的话题
     SXGNewsListCollectionViewCell *cell = (SXGNewsListCollectionViewCell *)[_newsListCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0]];
     cell.newsTopicModel = _newsTopicArr[index];
-    
     UIButton *button = _newsTopicScrollView.subviews[index];
-    if (button != _selectedNewsTopicButton) {
-        [self newsTopicButtonAction:button];
-    }
+    [self newsTopicButtonAction:button];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSArray<NSIndexPath *>* visibleIndexPaths = [_newsListCollectionView indexPathsForVisibleItems];
-    UIButton *nextNewsTopicButton = nil;
-    for (NSIndexPath *indexPath in visibleIndexPaths) {
-        if (indexPath.item != _selectedNewsTopicButton.tag) {
-            nextNewsTopicButton = _newsTopicScrollView.subviews[indexPath.item];
-            break;
+    
+    NSArray<NSIndexPath *> *visibleIndexPaths = [_newsListCollectionView indexPathsForVisibleItems];
+    if (visibleIndexPaths.count < 2) {
+        return;
+    } else if (ABS(_currentNewsTopicIndex - _previousNewsTopicIndex) > 1) {
+        // 如果是通过点击话题滚动视图来切换 此时两个模块之间索引差很大 通过滚动动画结束来处理
+        return;
+    } else {
+        // 如果是慢慢滚动 在此进行处理
+        UIButton *nextNewsTopicButton = nil;
+        UIButton *currentNewsTopicButton = _newsTopicScrollView.subviews[_currentNewsTopicIndex];
+        for (NSIndexPath *indexPath in visibleIndexPaths) {
+            if (indexPath.item != _currentNewsTopicIndex) {
+                nextNewsTopicButton = _newsTopicScrollView.subviews[indexPath.item];
+                break;
+            }
         }
+        
+        // 设置颜色渐变
+        CGFloat offsetX = fabs(scrollView.contentOffset.x - _currentNewsTopicIndex * scrollView.width);
+        CGFloat nextScale = offsetX / scrollView.width;
+        CGFloat currentScale = (1 - nextScale);
+        [currentNewsTopicButton setTitleColor:[UIColor colorWithDisplayP3Red:currentScale green:0 blue:0 alpha:1] forState:UIControlStateNormal];
+        [nextNewsTopicButton setTitleColor:[UIColor colorWithDisplayP3Red:nextScale green:0 blue:0 alpha:1] forState:UIControlStateNormal];
+        
+        // 设置尺寸缩放
+        CGFloat currentTransformScale = (kSelectedNewsTopicButtonScale - 1) * currentScale + 1;
+        CGFloat nextTransformScale = (kSelectedNewsTopicButtonScale - 1) * nextScale + 1;
+        currentNewsTopicButton.transform = CGAffineTransformMakeScale(currentTransformScale, currentTransformScale);
+        nextNewsTopicButton.transform = CGAffineTransformMakeScale(nextTransformScale, nextTransformScale);
     }
-    
-    // 设置颜色渐变
-    CGFloat offsetX = fabs(scrollView.contentOffset.x - _selectedNewsTopicButton.tag * scrollView.width);
-    CGFloat nextScale = offsetX / scrollView.width;
-    CGFloat currentScale = (1 - nextScale);
-    [_selectedNewsTopicButton setTitleColor:[UIColor colorWithDisplayP3Red:currentScale green:0 blue:0 alpha:1] forState:UIControlStateNormal];
-    [nextNewsTopicButton setTitleColor:[UIColor colorWithDisplayP3Red:nextScale green:0 blue:0 alpha:1] forState:UIControlStateNormal];
-    
-    // 设置尺寸缩放
-    CGFloat currentTransformScale = (kSelectedNewsTopicButtonScale - 1) * currentScale + 1;
-    CGFloat nextTransformScale = (kSelectedNewsTopicButtonScale - 1) * nextScale + 1;
-    _selectedNewsTopicButton.transform = CGAffineTransformMakeScale(currentTransformScale, currentTransformScale);
-    nextNewsTopicButton.transform = CGAffineTransformMakeScale(nextTransformScale, nextTransformScale);
 }
 
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
-    [self scrollViewDidScroll:scrollView];
+    UIButton *previousNewsTopicButton = _newsTopicScrollView.subviews[_previousNewsTopicIndex];
+    UIButton *currentNewsTopicButton = _newsTopicScrollView.subviews[_currentNewsTopicIndex];
+    [previousNewsTopicButton setTitleColor:SXG_News_Topic_Normal_Color forState:UIControlStateNormal];
+    [currentNewsTopicButton setTitleColor:SXG_News_Topic_Selected_Color forState:UIControlStateNormal];
+    previousNewsTopicButton.transform = CGAffineTransformIdentity;
+    currentNewsTopicButton.transform = CGAffineTransformMakeScale(kSelectedNewsTopicButtonScale, kSelectedNewsTopicButtonScale);
+    _previousNewsTopicIndex = _currentNewsTopicIndex;
+    
+    SXGNewsListCollectionViewCell *cell = (SXGNewsListCollectionViewCell *)[_newsListCollectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_currentNewsTopicIndex inSection:0]];
+    cell.newsTopicModel = _newsTopicArr[_currentNewsTopicIndex];
 }
 
 #pragma mark - 内部其他私有方法
@@ -180,7 +209,8 @@ static const CGFloat kSelectedNewsTopicButtonScale = 1.5f;
         button.frame = CGRectMake(width * idx, 0, width, self->_newsTopicScrollView.height);
         
         if (idx == 0) {
-            self->_selectedNewsTopicButton = button;
+            button.transform = CGAffineTransformMakeScale(kSelectedNewsTopicButtonScale, kSelectedNewsTopicButtonScale);
+            [button setTitleColor:SXG_News_Topic_Selected_Color forState:UIControlStateNormal];
         }
     }];
     
