@@ -37,8 +37,9 @@
     _newsViewModel = newsViewModel;
     
     _titleLabel.text = newsViewModel.title;
+    CGSize size = _imgsrcImageView.size;
     [_imgsrcImageView yy_setImageWithURL:[NSURL URLWithString:newsViewModel.imgsrc] placeholder:nil options:0 progress:nil transform:^UIImage * _Nullable(UIImage * _Nonnull image, NSURL * _Nonnull url) {
-        return [image yy_imageByResizeToSize:self->_imgsrcImageView.size contentMode:UIViewContentModeScaleAspectFill];
+        return [image yy_imageByResizeToSize:size contentMode:UIViewContentModeScaleAspectFill];
     } completion:nil];
 }
 

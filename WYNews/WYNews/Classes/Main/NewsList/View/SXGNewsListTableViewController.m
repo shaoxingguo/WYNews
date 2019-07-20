@@ -57,16 +57,6 @@ static NSString *kSXGBigImageNewsTableViewCellReuseIdentifier = @"SXGBigImageNew
     return self;
 }
 
-#pragma mark - 开放方法
-
-- (void)reset
-{
-    if ([self.tableView visibleCells].count > 1) {
-        [_headLineViewController reset];
-        [self.tableView setContentOffset:CGPointMake(0, 0)];
-    }
-}
-
 #pragma mark - 控制器生命周期方法
 
 - (void)viewDidLoad
@@ -168,6 +158,7 @@ static NSString *kSXGBigImageNewsTableViewCellReuseIdentifier = @"SXGBigImageNew
 
     self.tableView.estimatedRowHeight = 150;
     self.tableView.tableFooterView = [[UIView alloc] init];
+    self.tableView.scrollsToTop = YES;
     
     [self prepareHeadLineView];
     
@@ -181,7 +172,7 @@ static NSString *kSXGBigImageNewsTableViewCellReuseIdentifier = @"SXGBigImageNew
     [_headLineViewController didMoveToParentViewController:self];
     
     self.tableView.tableHeaderView = _headLineViewController.view;
-    _headLineViewController.view.height = 180;
+    _headLineViewController.view.height = 240;
 }
 
 - (void)loadNewsListData
@@ -204,11 +195,21 @@ static NSString *kSXGBigImageNewsTableViewCellReuseIdentifier = @"SXGBigImageNew
 
 - (void)setNewsTopicModel:(SXGNewsTopicModel *)newsTopicModel
 {
+    // 重置cell
+    [self reset];
     if (_newsTopicModel != newsTopicModel) {
-        [SXGNetworkTools cancelAllOperations];
-        _headLineViewController.newsTopicModel = newsTopicModel;
         _newsTopicModel = newsTopicModel;
+        [SXGNetworkTools cancelAllOperations];
         [self loadNewsListData];
+    }
+    
+    _headLineViewController.newsTopicModel = newsTopicModel;
+}
+
+- (void)reset
+{
+    if ([self.tableView visibleCells].count > 1) {
+        [self.tableView setContentOffset:CGPointMake(0, 0)];
     }
 }
 

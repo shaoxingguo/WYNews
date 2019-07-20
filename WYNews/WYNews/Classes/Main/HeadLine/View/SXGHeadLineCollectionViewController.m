@@ -70,16 +70,6 @@ static NSString *kSXGHeadLineCollectionViewCellReuseIdentifier = @"SXGHeadLineCo
 
 #pragma mark - 开放方法
 
-- (void)reset
-{
-    if (_timer != nil) {
-        [self stopTimer];
-        self->_currentIndex = self->_headLineModelaArr.count;
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self->_currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
-        [self startTimer];
-    }
-}
-
 - (void)refresh
 {
     [self stopTimer];
@@ -196,9 +186,22 @@ static NSString *kSXGHeadLineCollectionViewCellReuseIdentifier = @"SXGHeadLineCo
 
 - (void)setNewsTopicModel:(SXGNewsTopicModel *)newsTopicModel
 {
+    [self reset];
+    
     if (_newsTopicModel != newsTopicModel) {
         _newsTopicModel = newsTopicModel;
         [self loadHeadLineData];
+    } else {
+        [self startTimer];
+    }
+}
+
+- (void)reset
+{
+    if (_timer != nil) {
+        [self stopTimer];
+        self->_currentIndex = self->_headLineModelaArr.count;
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForItem:self->_currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
     }
 }
 

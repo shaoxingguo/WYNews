@@ -38,13 +38,16 @@
     _newsViewModel = newsViewModel;
     
     _titleLabel.text = newsViewModel.title;
+    
+    __block CGSize size = _imgsrcImageView.size;
     [_imgsrcImageView yy_setImageWithURL:[NSURL URLWithString:newsViewModel.imgsrc] placeholder:nil options:0 progress:nil transform:^UIImage * _Nullable(UIImage * _Nonnull image, NSURL * _Nonnull url) {
-        return [image yy_imageByResizeToSize:self->_imgsrcImageView.size contentMode:UIViewContentModeScaleAspectFill];
+        return [image yy_imageByResizeToSize:size contentMode:UIViewContentModeScaleAspectFill];
     } completion:nil];
     
     [_extraImageViewArray enumerateObjectsUsingBlock:^(UIImageView *imageView, NSUInteger idx, BOOL * _Nonnull stop) {
+        size = imageView.size;
         [imageView yy_setImageWithURL:[NSURL URLWithString:newsViewModel.imgextra[idx]] placeholder:nil options:0 progress:nil transform:^UIImage * _Nullable(UIImage * _Nonnull image, NSURL * _Nonnull url) {
-            return [image yy_imageByResizeToSize:imageView.size];
+            return [image yy_imageByResizeToSize:size];
         } completion:nil];
     }];
 }

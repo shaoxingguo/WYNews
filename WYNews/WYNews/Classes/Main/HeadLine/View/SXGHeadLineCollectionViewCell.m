@@ -28,9 +28,9 @@
     
     _titleLabel.text = headLineModel.title;
     _pageControl.currentPage = self.tag;
-    
+    CGSize size = _imageView.size;
     [_imageView yy_setImageWithURL:[NSURL URLWithString:headLineModel.imgsrc] placeholder:nil options:0 progress:nil transform:^UIImage * _Nullable(UIImage * _Nonnull image, NSURL * _Nonnull url) {
-        return [image yy_imageByResizeToSize:self->_imageView.size contentMode:UIViewContentModeScaleAspectFill];
+        return [image yy_imageByResizeToSize:size contentMode:UIViewContentModeScaleAspectFill];
     } completion:nil];
 }
 

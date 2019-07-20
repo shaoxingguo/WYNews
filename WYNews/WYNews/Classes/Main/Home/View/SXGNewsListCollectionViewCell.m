@@ -34,13 +34,12 @@
     [self.contentView addSubview:_newsListTableViewController.view];
     
     _newsListTableViewController.view.frame = self.contentView.bounds;
-    _newsListTableViewController.tableView.tableHeaderView.height = 180;
+    _newsListTableViewController.tableView.tableHeaderView.height = 240;
 }
 
 - (void)setNewsTopicModel:(SXGNewsTopicModel *)newsTopicModel
 {
     _newsListTableViewController.newsTopicModel = newsTopicModel;
-    [_newsListTableViewController reset];
 }
 
 @end

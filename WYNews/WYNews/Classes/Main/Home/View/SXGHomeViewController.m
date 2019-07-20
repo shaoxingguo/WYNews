@@ -198,6 +198,7 @@ static const CGFloat kSelectedNewsTopicButtonScale = 1.5f;
     _newsTopicScrollView.showsHorizontalScrollIndicator = NO;
     _newsTopicScrollView.showsVerticalScrollIndicator = NO;
     _newsTopicScrollView.bounces = NO;
+    _newsTopicScrollView.scrollsToTop = NO;
     [self.view addSubview:_newsTopicScrollView];
     
     CGFloat width = ceil(self.view.width / 6);  // 按钮宽度 一页显示6个按钮
@@ -234,6 +235,7 @@ static const CGFloat kSelectedNewsTopicButtonScale = 1.5f;
     _newsListCollectionView.showsHorizontalScrollIndicator = NO;
     _newsListCollectionView.dataSource = self;
     _newsListCollectionView.delegate = self;
+    _newsListCollectionView.scrollsToTop = NO;
     
     [_newsListCollectionView registerClass:[SXGNewsListCollectionViewCell class] forCellWithReuseIdentifier:kSXGNewsListCollectionViewCellReuseIdentifier];
 }

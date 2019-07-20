@@ -17,8 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 新闻话题数据模型
 @property (nonatomic,strong) SXGNewsTopicModel *newsTopicModel;
 
-/// 重置
-- (void)reset;
 /// 刷新数据
 - (void)refresh;
 
