@@ -7,7 +7,6 @@
 //
 
 #import <MJExtension/MJExtension.h>
-#import <YYWebImage/YYWebImage.h>
 
 #import "SXGHomeViewController.h"
 #import "SXGHeadLineCollectionViewController.h"
@@ -63,13 +62,6 @@ static const CGFloat kSelectedNewsTopicButtonScale = 1.5f;
         SXGNewsListCollectionViewCell *cell = (SXGNewsListCollectionViewCell *)[self->_newsListCollectionView cellForItemAtIndexPath:indexPath];
         cell.newsTopicModel = self->_newsTopicArr[indexPath.item];
     });
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    
-    [[YYWebImageManager sharedManager].cache.memoryCache removeAllObjects];
 }
 
 #pragma mark - 事件监听

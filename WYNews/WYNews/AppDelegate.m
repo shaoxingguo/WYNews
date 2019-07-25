@@ -8,6 +8,8 @@
 
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <AFNetworking/AFNetworkActivityIndicatorManager.h>
+#import <WebKit/WebKit.h>
+#import <YYWebImage/YYWebImage.h>
 
 #import "AppDelegate.h"
 
@@ -28,41 +30,53 @@
     _window.rootViewController = nav;
     [_window makeKeyAndVisible];
     
+    // 初始化设置
     [self initializeSetting];
     return YES;
 }
 
 
-- (void)applicationWillResignActive:(UIApplication *)application {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+- (void)applicationWillResignActive:(UIApplication *)application
+{
 }
 
 
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+// app进入后台
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    // 清除webView缓存
+    NSSet *types = [WKWebsiteDataStore allWebsiteDataTypes];
+    [[WKWebsiteDataStore defaultDataStore] removeDataOfTypes:types modifiedSince:[NSDate dateWithTimeIntervalSince1970:0] completionHandler:^{
+        DEBUG_Log(@"清除完成");
+    }];
+    
+    [[YYWebImageManager sharedManager].cache.memoryCache removeAllObjects];
 }
 
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
 }
 
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
 
-- (void)applicationWillTerminate:(UIApplication *)application {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+}
+
+// app收到内存警告
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application
+{
+    [[YYWebImageManager sharedManager].cache.memoryCache removeAllObjects];
 }
 
 #pragma mark - 其他私有方法
 
 - (void)initializeSetting
 {
+    // 设置导航栏
     UINavigationBar *navBar = [UINavigationBar appearance];
     [navBar setBackgroundImage:[UIImage imageNamed:@"NavBar64"] forBarMetrics:UIBarMetricsDefault];
     navBar.tintColor = [UIColor whiteColor];
@@ -71,11 +85,23 @@
                                    NSForegroundColorAttributeName: [UIColor whiteColor]
                                    };
     
+    // 设置SVProgressHUD
     [SVProgressHUD setMaximumDismissTimeInterval:2];
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
     [SVProgressHUD setForegroundColor:[UIColor redColor]];
     
+    // 设置网络指示器
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    
+    // 设置YYWebImage缓存限制
+    [YYWebImageManager sharedManager].cache.diskCache.countLimit = 200; // 缓存总数
+    [YYWebImageManager sharedManager].cache.diskCache.costLimit = 1024 * 1024 * 200; // 缓存大小
+    [YYWebImageManager sharedManager].cache.diskCache.ageLimit = 60 * 60 * 24 * 3;  // 缓存时长
+    [YYWebImageManager sharedManager].cache.diskCache.autoTrimInterval = 60 * 3; // 每隔3分钟检查一次磁盘缓存 如果超出限制 进行删除
+    
+    [YYWebImageManager sharedManager].cache.memoryCache.countLimit = 50; // 缓存总数
+    [YYWebImageManager sharedManager].cache.memoryCache.costLimit = 1024 * 1024 * 50; // 缓存大小
+    [YYWebImageManager sharedManager].cache.memoryCache.autoTrimInterval = 60;  // 每隔60秒检查一次内存 如果超出限制 进行删除
 }
 
 @end
