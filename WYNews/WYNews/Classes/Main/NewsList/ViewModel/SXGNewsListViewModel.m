@@ -36,12 +36,12 @@
 
 - (void)loadNewsListWithTid:(NSString *)tid completion:(void (^)(BOOL))completion
 {
-    [SXGNewsDAL loadNewsListWithTid:tid completion:^(id  _Nullable responseObject) {
+    [[SXGNewsDAL shared] loadNewsListWithTid:tid completion:^(id  _Nullable responseObject) {
         if (responseObject == nil || [responseObject count] == 0) {
             completion(NO);
             return;
         }
-    
+        
         NSArray<SXGNewsModel *> *newsModelArr = [SXGNewsModel mj_objectArrayWithKeyValuesArray:responseObject];
         NSArray<SXGNewsViewModel *>*newsViewModelArr = [SXGNewsViewModel viewModelArrayWithNewsModelArray:newsModelArr];
         [self->_newsViewModelArrM removeAllObjects];

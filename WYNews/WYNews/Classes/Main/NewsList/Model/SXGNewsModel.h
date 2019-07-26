@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong) NSArray<NSDictionary *> *imgextra;
 /// 图片类型
 @property (nonatomic,assign) NSInteger imgType;
+/// 新闻id
+@property (nonatomic,copy) NSString *postid;
 
 @end
 

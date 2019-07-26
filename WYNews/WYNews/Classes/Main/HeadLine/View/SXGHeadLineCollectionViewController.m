@@ -140,7 +140,7 @@ static NSString *kSXGHeadLineCollectionViewCellReuseIdentifier = @"SXGHeadLineCo
 - (void)loadHeadLineData
 {
     NSString *tid = _newsTopicModel != nil ? _newsTopicModel.tid : @"T1348647853363";
-    [SXGNewsDAL loadHeadLineListWithTid:tid completion:^(id  _Nullable responseObject) {
+    [[SXGNewsDAL shared] loadHeadLineListWithTid:tid completion:^(id  _Nullable responseObject) {
         if (responseObject == nil || [responseObject count] == 0) {
             return;
         }
@@ -192,7 +192,9 @@ static NSString *kSXGHeadLineCollectionViewCellReuseIdentifier = @"SXGHeadLineCo
         _newsTopicModel = newsTopicModel;
         [self loadHeadLineData];
     } else {
-        [self startTimer];
+        if (_headLineModelaArr.count > 0) {
+            [self startTimer];
+        }
     }
 }
 

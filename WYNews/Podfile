@@ -13,5 +13,6 @@ pod 'MJRefresh'
 pod 'SVProgressHUD'
 pod 'AFNetworking'
 pod 'YYWebImage'
+pod 'FMDB'
 
 end

@@ -70,7 +70,7 @@
 
 - (void)loadNewsDetailData
 {
-    [SXGNewsDAL loadNewsDetailWithDocid:_newsViewModel.docid completion:^(id  _Nullable responseObject) {
+    [[SXGNewsDAL shared] loadNewsDetailWithDocid:_newsViewModel.docid completion:^(id  _Nullable responseObject) {
         if (responseObject == nil) {
             [SVProgressHUD showErrorWithStatus:@"加载新闻详情失败!"];
             return;

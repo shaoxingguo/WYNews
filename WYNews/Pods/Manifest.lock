@@ -14,6 +14,9 @@ PODS:
   - AFNetworking/Serialization (3.2.1)
   - AFNetworking/UIKit (3.2.1):
     - AFNetworking/NSURLSession
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
   - Masonry (1.1.0)
   - MJExtension (3.0.17)
   - MJRefresh (3.2.0)
@@ -28,6 +31,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - FMDB
   - Masonry
   - MJExtension
   - MJRefresh
@@ -37,6 +41,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - AFNetworking
+    - FMDB
     - Masonry
     - MJExtension
     - MJRefresh
@@ -47,6 +52,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 74ec83124a68891619fb7ba9c5c811bbf1691076
   MJRefresh: ed450d6eb9d3346a2cb033ab7eb6de090aeef437
@@ -55,6 +61,6 @@ SPEC CHECKSUMS:
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 93f0375be9a2f90f7ae4a142a9c0d3232762aa26
+PODFILE CHECKSUM: ce64c1f5b2b774228ea985c02af6e5bbf6cbd982
 
 COCOAPODS: 1.7.4
