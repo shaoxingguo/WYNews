@@ -35,6 +35,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSArray<NSString *> *__nullable)imgextra;
 /// 是否是大图
 - (BOOL)isBigImage;
+/// 是否已读
+- (BOOL)isRead;
+/// 设置是否已读
+- (void)setRead:(BOOL)read;
 
 @end
 

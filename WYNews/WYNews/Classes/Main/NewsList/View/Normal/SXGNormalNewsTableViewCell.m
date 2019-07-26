@@ -43,6 +43,7 @@
         return [image yy_imageByResizeToSize:CGSizeMake(80,60) contentMode: UIViewContentModeScaleAspectFill];
     } completion: nil];
     _titleLabel.text = newsViewModel.title;
+    _titleLabel.textColor = newsViewModel.isRead ? [UIColor lightGrayColor] : [UIColor blackColor];
     _digestLabel.text = newsViewModel.digest;
     _postTimeLabel.text = newsViewModel.postime;
     _replyCountLabel.text = newsViewModel.replyCount;

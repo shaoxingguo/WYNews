@@ -21,7 +21,6 @@
 
 #import "SXGNewsListViewModel.h"
 #import "SXGNewsTopicModel.h"
-
 #import "SXGNewsViewModel.h"
 
 #import "SXGNetworkTools.h"
@@ -32,7 +31,7 @@ static NSString *kSXGExtraImageNewsTableViewCellReuseIdentifier = @"SXGExtraImag
 static NSString *kSXGBigImageNewsTableViewCellReuseIdentifier = @"SXGBigImageNewsTableViewCell";
 
 
-@interface SXGNewsListTableViewController ()
+@interface SXGNewsListTableViewController () <SXGNewsDetailViewControllerDelegate>
 {
     /// 新闻列表视图模型
     SXGNewsListViewModel *_newsListViewModel;
@@ -40,6 +39,8 @@ static NSString *kSXGBigImageNewsTableViewCellReuseIdentifier = @"SXGBigImageNew
     SXGHeadLineCollectionViewController *_headLineViewController;
     /// 新闻话题数据模型
     SXGNewsTopicModel *_newsTopicModel;
+    /// 选中的新闻索引
+    NSIndexPath *_selectedIndexPath;
 }
 
 @end
@@ -139,10 +140,19 @@ static NSString *kSXGBigImageNewsTableViewCellReuseIdentifier = @"SXGBigImageNew
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    _selectedIndexPath = indexPath;
     SXGNewsDetailViewController *viewController = [[SXGNewsDetailViewController alloc] initWithNewsViewModel:_newsListViewModel.newsList[indexPath.row]];
+    viewController.delegate = self;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:viewController];
     viewController.navigationItem.title = @"新闻详情";
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:nav animated:YES completion:nil];
+}
+
+#pragma mark - SXGNewsDetailViewControllerDelegate
+
+- (void)newsDetailViewControllerDidClose:(SXGNewsDetailViewController *)newsDetailViewController
+{
+    [self.tableView reloadRowsAtIndexPaths:@[_selectedIndexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 #pragma mark - 其他私有方法

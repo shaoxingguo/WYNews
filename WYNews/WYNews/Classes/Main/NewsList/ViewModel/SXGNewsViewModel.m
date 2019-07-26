@@ -90,6 +90,16 @@
     return _newsModel.imgType == 1;
 }
 
+- (BOOL)isRead
+{
+    return _newsModel.isRead;
+}
+
+- (void)setRead:(BOOL)read
+{
+    _newsModel.read = read;
+}
+
 #pragma mark - 内部其他私有方法
 
 - (void)initializeSetting

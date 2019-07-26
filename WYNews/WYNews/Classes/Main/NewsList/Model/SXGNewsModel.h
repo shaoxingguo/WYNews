@@ -30,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,assign) NSInteger imgType;
 /// 新闻id
 @property (nonatomic,copy) NSString *postid;
+/// 是否已读
+@property (nonatomic,assign,getter=isRead) BOOL read;
 
 @end
 

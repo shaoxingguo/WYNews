@@ -38,6 +38,7 @@
     _newsViewModel = newsViewModel;
     
     _titleLabel.text = newsViewModel.title;
+    _titleLabel.textColor = newsViewModel.isRead ? [UIColor lightGrayColor] : [UIColor blackColor];
     
     __block CGSize size = _imgsrcImageView.size;
     [_imgsrcImageView yy_setImageWithURL:[NSURL URLWithString:newsViewModel.imgsrc] placeholder:nil options:0 progress:nil transform:^UIImage * _Nullable(UIImage * _Nonnull image, NSURL * _Nonnull url) {

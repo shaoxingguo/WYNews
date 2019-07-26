@@ -52,11 +52,20 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"退出" style:UIBarButtonItemStylePlain target:self action:@selector(goBackAction)];
 }
 
+- (void)dealloc
+{
+    DEBUG_Log_Method;
+}
+
 #pragma mark - 事件监听
 
 - (void)goBackAction
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^{
+        if ([self.delegate respondsToSelector:@selector(newsDetailViewControllerDidClose:)]) {
+            [self.delegate newsDetailViewControllerDidClose:self];
+        }
+    }];
 }
 
 #pragma mark - 内部其他私有方法
@@ -76,6 +85,7 @@
             return;
         }
         
+        [self->_newsViewModel setRead:YES];
         self->_newsDetailDictionary = responseObject;
         [self loadHtml];
     }];
